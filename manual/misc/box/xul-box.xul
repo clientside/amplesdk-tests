@@ -1,0 +1,93 @@
+<xul:wizard xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<xul:wizardpage next="p2" pageid="p1">
+	<xul:hbox debug="true">
+		<xul:vbox pack="start" flex="1">
+			<xul:description>pack="start"</xul:description>
+			<xul:description>pack="start"</xul:description>
+			<xul:description>pack="start"</xul:description>
+			<xul:menulist />
+		</xul:vbox>
+		<xul:vbox pack="center" flex="1">
+			<xul:description>pack="center"</xul:description>
+			<xul:description>pack="center"</xul:description>
+			<xul:description>pack="center"</xul:description>
+			<xul:menulist />
+		</xul:vbox>
+		<xul:vbox pack="end" flex="1">
+			<xul:description>pack="end"</xul:description>
+			<xul:description>pack="end"</xul:description>
+			<xul:description>pack="end"</xul:description>
+			<xul:menulist />
+		</xul:vbox>
+		<xul:vbox align="start" flex="1">
+			<xul:description>align="start"</xul:description>
+			<xul:description>align="start"</xul:description>
+			<xul:description>align="start"</xul:description>
+			<xul:menulist />
+		</xul:vbox>
+		<xul:vbox align="center" flex="1">
+			<xul:description>align="center"</xul:description>
+			<xul:description>align="center"</xul:description>
+			<xul:description>align="center"</xul:description>
+			<xul:menulist />
+		</xul:vbox>
+		<xul:vbox align="end" flex="1">
+			<xul:description>align="end"</xul:description>
+			<xul:description>align="end"</xul:description>
+			<xul:description>align="end"</xul:description>
+			<xul:menulist />
+		</xul:vbox>
+		<xul:vbox align="stretch" flex="1">
+			<xul:description>align="stretch"</xul:description>
+			<xul:description>align="stretch"</xul:description>
+			<xul:description>align="stretch"</xul:description>
+			<xul:menulist />
+		</xul:vbox>
+	</xul:hbox>
+	<xul:vbox debug="true" flex="1">
+		<xul:hbox pack="start" flex="1">
+			<xul:description>pack="start"</xul:description>
+			<xul:description>pack="start"</xul:description>
+			<xul:description>pack="start"</xul:description>
+			<xul:menulist />
+		</xul:hbox>
+		<xul:hbox pack="center" flex="1">
+			<xul:description>pack="center"</xul:description>
+			<xul:description>pack="center"</xul:description>
+			<xul:description>pack="center"</xul:description>
+			<xul:menulist />
+		</xul:hbox>
+		<xul:hbox pack="end" flex="1">
+			<xul:description>pack="end"</xul:description>
+			<xul:description>pack="end"</xul:description>
+			<xul:description>pack="end"</xul:description>
+			<xul:menulist />
+		</xul:hbox>
+		<xul:hbox align="start" flex="1">
+			<xul:description>align="start"</xul:description>
+			<xul:description>align="start"</xul:description>
+			<xul:description>align="start"</xul:description>
+			<xul:menulist />
+		</xul:hbox>
+		<xul:hbox align="center" flex="1">
+			<xul:description>align="center"</xul:description>
+			<xul:description>align="center"</xul:description>
+			<xul:description>align="center"</xul:description>
+			<xul:menulist />
+		</xul:hbox>
+		<xul:hbox align="end" flex="1" style="outline:dotted 1px green">
+			<xul:description>align="end"</xul:description>
+			<xul:description>align="end"</xul:description>
+			<xul:description>align="end"</xul:description>
+			<xul:menulist />
+		</xul:hbox>
+		<xul:hbox align="stretch" flex="1" style="outline:dotted 1px gray">
+			<xul:description>align="stretch"</xul:description>
+			<xul:description>align="stretch"</xul:description>
+			<xul:description>align="stretch"</xul:description>
+			<xul:menulist />
+		</xul:hbox>
+	</xul:vbox>
+	</xul:wizardpage>
+	<xul:wizardpage pageid="p2"><xul:label value="last page"/></xul:wizardpage>
+</xul:wizard>
