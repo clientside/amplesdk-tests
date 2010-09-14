@@ -9,7 +9,7 @@
 
 var JsUnitClient	= (function() {
 
-	var sBaseUriAmple	= '../../ample/';
+	var sBaseUriAmple	= '../../amplesdk/ample/';	// Source version
 	//var sBaseUriAmple	= '../../build/work/ample-0.9.0/ample/';
 
 	function fGetUriComponents(sUri) {

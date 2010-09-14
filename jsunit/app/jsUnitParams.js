@@ -31,7 +31,7 @@ JsUnit.Params.prototype.get = function(name) {
 
 // modifyed by ilinsky
 JsUnit.Params.prototype.getTestPage = function() {
-    return JsUnit.Uri.resolveUri(this.get('testpage'), document.location.href);
+    return this.get('testpage') ? JsUnit.Uri.resolveUri(this.get('testpage'), document.location.href) : '';
 }
 
 JsUnit.Params.prototype.shouldKickOffTestsAutomatically = function() {

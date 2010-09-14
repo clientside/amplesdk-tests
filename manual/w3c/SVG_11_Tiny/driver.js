@@ -1,10 +1,10 @@
 // Load ample files
 var oRequest	= new XMLHttpRequest;
 // #include runtime
-oRequest.open("GET", "../../../../../ample/runtime.js", false);
+oRequest.open("GET", "../../../../../amplesdk/ample/runtime.js", false);
 oRequest.send(null);
 eval(oRequest.responseText);
-// #include SVG implementationoRequest.open("GET", "../../../../../ample/languages/svg/svg.js", false);
+// #include SVG implementationoRequest.open("GET", "../../../../../amplesdk/ample/languages/svg/svg.js", false);
 oRequest.send(null);
 eval(oRequest.responseText);
 
