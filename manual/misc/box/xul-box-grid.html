@@ -7,27 +7,94 @@
 		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
 		<link type="text/css" rel="stylesheet" href="../../../../amplesdk/ample/languages/xul/themes/default/style.css"/>
 		<style>
-		html, body {
+		html, body, body>div {
 			height: 100%;
 		}
 		</style>
 	</head>
 	<body>
 		<script>ample.open()</script>
-		<xul:grid>
+		<xul:vbox debug="true">
+		<xul:grid height="120" debug="true">
 			<xul:rows>
-				<xul:row debug="true">
-					<div flex="1">1</div>
-					<div flex="2">2</div>
+				<xul:row>
+					<div flex="1">cell flex=1</div>
+					<div flex="2">cell flex=2</div>
+					<div flex="3">cell flex=3</div>
+				</xul:row>
+				<xul:row>
+					<div>1</div>
+					<div>2</div>
 					<div>3</div>
 				</xul:row>
-				<xul:row debug="true">
+				<xul:row>
 					<div>1</div>
 					<div>2</div>
 					<div>3</div>
 				</xul:row>
 			</xul:rows>
 		</xul:grid>
+		<xul:spacer height="5" />
+		<xul:grid height="120" debug="true">
+			<xul:rows>
+				<xul:row>
+					<div>1</div>
+					<div width="400">cell width=400</div>
+					<div>3</div>
+				</xul:row>
+				<xul:row>
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+				</xul:row>
+				<xul:row>
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+				</xul:row>
+			</xul:rows>
+		</xul:grid>
+		<xul:spacer height="5" />
+		<xul:grid height="120" debug="true">
+			<xul:rows>
+				<xul:row>
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+				</xul:row>
+				<xul:row height="50">
+					<div>row height=50</div>
+					<div>2</div>
+					<div>3</div>
+				</xul:row>
+				<xul:row>
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+				</xul:row>
+			</xul:rows>
+		</xul:grid>
+		<xul:spacer height="5" />
+		<xul:grid height="120">
+			<xul:rows>
+				<xul:row flex="1">
+					<div>row flex=1</div>
+					<div>2</div>
+					<div>3</div>
+				</xul:row>
+				<xul:row flex="2">
+					<div>row flex=2</div>
+					<div>2</div>
+					<div>3</div>
+				</xul:row>
+				<xul:row flex="3">
+					<div>row flex=3</div>
+					<div>2</div>
+					<div>3</div>
+				</xul:row>
+			</xul:rows>
+		</xul:grid>
+		</xul:vbox>
 		<script>ample.close()</script>
 	</body>
 </html>

@@ -143,6 +143,7 @@
 	<body>
 		<script>ample.open()</script>
 		<!--xul:window debug="true" width="600" height="600"-->
+		<h3>pack="end" align="end"</h3>
 		<div debug="true" style="width:600px;height:600px">
 			<xul:hbox pack="end" align="end" height="100" width="400">
 				<div class="box-child box-child-1" style="height:50px;width:50px">1</div>
@@ -159,6 +160,24 @@
 				<div class="box-child box-child-5" style="width:50px;height:50px">5</div>
 			</xul:vbox>
 		</div>
+		<h3>pack="end" align="stretch"</h3>
+		<div debug="true" style="width:600px;height:600px">
+			<xul:hbox pack="end" align="stretch" height="100" width="400">
+				<div class="box-child box-child-1" style="height:50px;width:50px">1</div>
+				<div class="box-child box-child-2" style="height:50px;width:50px">2</div>
+				<div class="box-child box-child-3" style="height:50px;width:50px">3</div>
+				<div class="box-child box-child-4" style="height:50px;width:50px">4</div>
+				<div class="box-child box-child-5" style="height:50px;width:50px">5</div>
+			</xul:hbox>
+			<xul:vbox pack="end" align="stretch" height="400" width="100">
+				<div class="box-child box-child-1" style="width:50px;height:50px">1</div>
+				<div class="box-child box-child-2" style="width:50px;height:50px">2</div>
+				<div class="box-child box-child-3" style="width:50px;height:50px">3</div>
+				<div class="box-child box-child-4" style="width:50px;height:50px">4</div>
+				<div class="box-child box-child-5" style="width:50px;height:50px">5</div>
+			</xul:vbox>
+		</div>
+		<h3>pack="end" align="end" (with flex)</h3>
 		<div debug="true" style="width:600px;height:600px">
 			<xul:hbox pack="end" align="end" height="100" width="400">
 				<div class="box-child box-child-1" flex="1" style="height:50px">1</div>
@@ -175,6 +194,41 @@
 				<div class="box-child box-child-5" flex="1" style="width:50px">5</div>
 			</xul:vbox>
 		</div>
+		<h3>---</h3>
+		<xul:hbox debug="true" width="600" height="600">
+			<xul:hbox pack="end" align="end" height="100" width="400">
+				<div class="box-child box-child-1" style="height:50px;width:50px">1</div>
+				<div class="box-child box-child-2" style="height:50px;width:50px">2</div>
+				<div class="box-child box-child-3" style="height:50px;width:50px">3</div>
+				<div class="box-child box-child-4" style="height:50px;width:50px">4</div>
+				<div class="box-child box-child-5" style="height:50px;width:50px">5</div>
+			</xul:hbox>
+			<xul:vbox pack="end" align="end" height="400" width="100">
+				<div class="box-child box-child-1" style="width:50px;height:50px">1</div>
+				<div class="box-child box-child-2" style="width:50px;height:50px">2</div>
+				<div class="box-child box-child-3" style="width:50px;height:50px">3</div>
+				<div class="box-child box-child-4" style="width:50px;height:50px">4</div>
+				<div class="box-child box-child-5" style="width:50px;height:50px">5</div>
+			</xul:vbox>
+		</xul:hbox>
+		<h3>--</h3>
+		<xul:vbox debug="true" width="600" height="600">
+			<xul:hbox pack="end" align="end" height="100" width="400">
+				<div class="box-child box-child-1" flex="1" style="height:50px">1</div>
+				<div class="box-child box-child-2" flex="2" style="height:50px">2</div>
+				<div class="box-child box-child-3" flex="3" style="height:50px">3</div>
+				<div class="box-child box-child-4" flex="2" style="height:50px">4</div>
+				<div class="box-child box-child-5" flex="1" style="height:50px">5</div>
+			</xul:hbox>
+			<xul:vbox pack="end" align="end" height="400" width="100">
+				<div class="box-child box-child-1" flex="1" style="width:50px">1</div>
+				<div class="box-child box-child-2" flex="2" style="width:50px">2</div>
+				<div class="box-child box-child-3" flex="3" style="width:50px">3</div>
+				<div class="box-child box-child-4" flex="2" style="width:50px">4</div>
+				<div class="box-child box-child-5" flex="1" style="width:50px">5</div>
+			</xul:vbox>
+		</xul:vbox>
+
 		<!--/xul:window-->
 		<script>ample.close()</script>
 		<div class="horizontal noflex">
