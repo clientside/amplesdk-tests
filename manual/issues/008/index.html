@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>TV</title>
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      margin: 0;
+    }
+    .test2 {
+		position: absolute;
+		left: 25%;
+		width: 25%;
+		background-color: lightblue;
+		height: 20px;
+    }
+  </style>
+  <script>
+  function test(element) {
+	  ample.query(element).animate({'left' : '50%', 'width' : '50%'}, 700, 'ease-out');
+  }
+  </script>
+</head>
+
+<body>
+  <script type="application/ample+xml" xmlns="http://www.w3.org/1999/xhtml">
+    <div style="position: relative; width: 100%; border: 1px solid red; height: 20px;">
+      <div style="position: absolute; left: 25%; width: 25%; background-color: lightblue; height: 20px;" onclick="test(this)">test 1</div>
+    </div>
+  </script>
+  <script type="application/ample+xml" xmlns="http://www.w3.org/1999/xhtml">
+    <div style="position: relative; width: 100%; border: 1px solid red; height: 20px;">
+      <div class="test2" onclick="test(this)">test 2</div>
+    </div>
+  </script>
+  <script type="application/ample+xml" xmlns="http://www.w3.org/1999/xhtml">
+    <div style="position: relative; width: 100%; border: 1px solid red; height: 20px;">
+      <div style="position: absolute; left: 50%; width: 50%; background-color: lightgreen; height: 20px;">both blue rectangles should move in right direction and end like me</div>
+    </div>
+  </script>
+  <script type="text/javascript" src="/amplesdk/ample/runtime.js"></script>
+  <script type="text/javascript" src="/amplesdk/ample/languages/xhtml/xhtml.js"></script>
+</body>
+</html>
