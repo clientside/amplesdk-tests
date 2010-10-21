@@ -1,0 +1,1 @@
+document.body.appendChild(document.createElement("div")).innerHTML	= '<div>folder3/test.js</div>';

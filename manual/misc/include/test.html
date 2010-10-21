@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>ample.include test</title>
+        <script type="text/javascript" src="/amplesdk/ample/runtime.js"></script>
+<!--
+        <script>
+        	ample.include("/amplesdk/ample/languages/xul/xul.js");
+        	ample.include("/amplesdk/ample/languages/xul/themes/default/style.css");
+        	ample.include("/amplesdk/ample/languages/xhtml/xhtml.js");
+        	ample.include("/amplesdk/ample/plugins/glob/glob.js");
+        	ample.include("/amplesdk/ample/plugins/tmpl/tmpl.js");
+        </script>
+ -->
+		<script type="text/javascript" src="/amplesdk/ample/languages/xul/xul.js"></script>
+		<script type="text/javascript" src="/amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<link type="text/ample+css" rel="stylesheet" href="/amplesdk/ample/languages/xul/themes/default/style.css"/>
+        <script type="text/javascript" src="/amplesdk/ample/plugins/glob/glob.js"></script>
+        <script type="text/javascript" src="/amplesdk/ample/plugins/form/form.js"></script>
+        <script type="text/javascript" src="/amplesdk/ample/plugins/xpath/xpath.js"></script>
+	</head>
+	<body>
+        <!--script type="text/javascript" src="start/test.js"></script-->
+		<script>
+		ample.include("start/test.js");
+		</script>
+	</body>
+</html>
