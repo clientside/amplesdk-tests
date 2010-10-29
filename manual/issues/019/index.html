@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>019</title>
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      margin: 0;
+    }
+    .test2 {
+		position: absolute;
+		left: 25%;
+		width: 25%;
+		background-color: lightblue;
+		height: 20px;
+    }
+  </style>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+</head>
+
+<body>
+  <script type="application/ample+xml" xmlns="http://www.w3.org/1999/xhtml">
+<div id="0" style="padding:10px;border: solid 1px brown">
+	<div id="1" style="padding:10px;border: solid 1px red">
+	<div id="2" style="padding:10px;border: solid 1px blue" disabled="true">
+	<div id="3" style="padding:10px;border: solid 1px green">
+click;
+	</div>
+	</div>
+	</div>
+</div>
+  </script>
+  <div>
+  	Output in console
+  </div>
+  <script>
+  ample.ready(function() {
+	  ample.query("div").bind("click", function(oEvent) {
+			console.log("bubbling/target: " + this.getAttribute("id") + ' target: ' + oEvent.target.getAttribute("id"));
+	  });
+
+	  ample.query("div").bind("click", function(oEvent) {
+			console.warn("capturing: " + this.getAttribute("id") + ' target: ' + oEvent.target.getAttribute("id"));
+	  }, true);
+
+	  ample.bind("test:test", function(oEvent) {
+			console.warn("bubbling/target");
+	  })
+
+	  ample.bind("test:test", function(oEvent) {
+			console.warn("capturing");
+	  }, true)
+
+
+	  ample.trigger("test:test");
+
+  })
+  </script>
+</body>
+</html>
