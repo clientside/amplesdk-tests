@@ -6,9 +6,14 @@
 		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xul/xul.js"></script>
 		<link type="text/ample+css" href="../../../../amplesdk/ample/languages/xul/themes/default/style.css" rel="stylesheet"/>
 		<style type="text/css">
-			html, body, body>div {
+			html, body {
 				width: 100%;
 				height:100%;
+				padding: 0;
+				margin: 0;
+			}
+			.xul-description {
+				border: solid 1px yellow;
 			}
 		</style>
 		<style type="text/xample+css">
@@ -22,97 +27,124 @@
 	</head>
 	<body>
 		<script>ample.open()</script>
-<xul:window width="1000" height="1000">
- 	<xul:hbox debug="true" height="200">
+<xul:page xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<xul:hbox debug="true" height="200">
 		<xul:vbox pack="start" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>pack="start"</xul:description>
 			<xul:description>pack="start"</xul:description>
 			<xul:description>pack="start"</xul:description>
 			<xul:menulist />
 		</xul:vbox>
 		<xul:vbox pack="center" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>pack="center"</xul:description>
 			<xul:description>pack="center"</xul:description>
 			<xul:description>pack="center"</xul:description>
 			<xul:menulist />
 		</xul:vbox>
 		<xul:vbox pack="end" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>pack="end"</xul:description>
 			<xul:description>pack="end"</xul:description>
 			<xul:description>pack="end"</xul:description>
 			<xul:menulist />
 		</xul:vbox>
 		<xul:vbox align="start" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>align="start"</xul:description>
 			<xul:description>align="start"</xul:description>
 			<xul:description>align="start"</xul:description>
 			<xul:menulist />
 		</xul:vbox>
 		<xul:vbox align="center" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>align="center"</xul:description>
 			<xul:description>align="center"</xul:description>
 			<xul:description>align="center"</xul:description>
 			<xul:menulist />
 		</xul:vbox>
 		<xul:vbox align="end" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>align="end"</xul:description>
 			<xul:description>align="end"</xul:description>
 			<xul:description>align="end"</xul:description>
 			<xul:menulist />
 		</xul:vbox>
 		<xul:vbox align="stretch" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>align="stretch"</xul:description>
 			<xul:description>align="stretch"</xul:description>
 			<xul:description>align="stretch"</xul:description>
 			<xul:menulist />
 		</xul:vbox>
 	</xul:hbox>
-	<xul:spacer height="10"/>
 	<xul:vbox debug="true" flex="1">
 		<xul:hbox pack="start" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>pack="start"</xul:description>
 			<xul:description>pack="start"</xul:description>
 			<xul:description>pack="start"</xul:description>
 			<xul:menulist />
 		</xul:hbox>
 		<xul:hbox pack="center" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>pack="center"</xul:description>
 			<xul:description>pack="center"</xul:description>
 			<xul:description>pack="center"</xul:description>
 			<xul:menulist />
 		</xul:hbox>
 		<xul:hbox pack="end" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>pack="end"</xul:description>
 			<xul:description>pack="end"</xul:description>
 			<xul:description>pack="end"</xul:description>
 			<xul:menulist />
 		</xul:hbox>
 		<xul:hbox align="start" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>align="start"</xul:description>
 			<xul:description>align="start"</xul:description>
 			<xul:description>align="start"</xul:description>
 			<xul:menulist />
 		</xul:hbox>
 		<xul:hbox align="center" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>align="center"</xul:description>
 			<xul:description>align="center"</xul:description>
 			<xul:description>align="center"</xul:description>
 			<xul:menulist />
 		</xul:hbox>
-		<xul:hbox align="end" flex="1" style="outline:dotted 1px green">
+		<xul:hbox align="end" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>align="end"</xul:description>
 			<xul:description>align="end"</xul:description>
 			<xul:description>align="end"</xul:description>
 			<xul:menulist />
 		</xul:hbox>
-		<xul:hbox align="stretch" flex="1" style="outline:dotted 1px gray">
+		<xul:hbox align="stretch" flex="1">
+			<xul:hbox><xul:description>hbox</xul:description></xul:hbox>
+			<xul:vbox><xul:description>vbox</xul:description></xul:vbox>
 			<xul:description>align="stretch"</xul:description>
 			<xul:description>align="stretch"</xul:description>
 			<xul:description>align="stretch"</xul:description>
 			<xul:menulist />
 		</xul:hbox>
 	</xul:vbox>
-</xul:window>
+</xul:page>
 <script>ample.close()</script>
 	</body>
 </html>
