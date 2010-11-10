@@ -1,0 +1,33 @@
+@namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
+xul|box[debug=true] {
+	border-width:	1px;
+	border-style:	dashed;
+}
+
+xul|vbox[debug=true] {
+	border-color:	red;
+	border-left-width:	2px;
+	border-left-style:	solid;
+	background-color:	#fee;
+}
+
+xul|hbox[debug=true] {
+	border-color:	blue;
+	border-top-width:	2px;
+	border-top-style:	solid;
+	background-color:	#eef;
+}
+
+xul|description {
+	border: solid 1px black;
+}
+
+xul|vbox[debug=true] xul|box::-moz-box,
+xul|hbox[debug=true] xul|box::-moz-box {
+	outline: solid 1px green;
+}
+xul|vbox[debug=true] xul|box::-box-child,
+xul|hbox[debug=true] xul|box::-box-child {
+	outline: dotted 1px gray;
+}
