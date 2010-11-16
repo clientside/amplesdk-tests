@@ -1,0 +1,5 @@
+<?xml-stylesheet href="xul-box-debug.css" type="text/css"?>
+<xul:page xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<xul:label value="bla" />
+	<xul:textbox value="asd" placeholder="Enter" />
+</xul:page>
