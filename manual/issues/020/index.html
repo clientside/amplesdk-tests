@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Test</title>
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      height:100%;
+      margin: 0;
+    }
+  </style>
+  <script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+  <script type="text/javascript" src="../../../../amplesdk/ample/languages/xul/xul.js"></script>
+  <link type="text/ample+css" href="../../../../amplesdk/ample/languages/xul/themes/default/style.css" />
+</head>
+
+<body>
+<script type="application/ample+xml">
+  <xul:page style="background-color:lightblue" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <xul:hbox flex="1">
+    <xul:tree treelines="true" width="500" height="200">
+      <xul:treecols>
+
+        <xul:treecol label="0" Xminwidth="230" flex="1" />
+        <xul:treecol label="1" Xminwidth="230" flex="1" />
+        <xul:treecol label="2" maxwidth="20" Xflex="1" />
+        <xul:treecol label="3" maxwidth="20" Xflex="1" />
+      </xul:treecols>
+      <xul:treebody tfs_notes="required non-standard element defined by AmpleSDK">
+        <xul:treechildren>
+          <xul:treeitem>
+            <xul:treerow>
+
+              <xul:treecell label="This" />
+              <xul:treecell label="is" />
+              <xul:treecell label="r" />
+              <xul:treecell label="0" />
+            </xul:treerow>
+          </xul:treeitem>
+          <xul:treeitem>
+            <xul:treerow>
+              <xul:treecell label="This" />
+
+              <xul:treecell label="is" />
+              <xul:treecell label="r" />
+              <xul:treecell label="1" />
+            </xul:treerow>
+          </xul:treeitem>
+        </xul:treechildren>
+      </xul:treebody>
+    </xul:tree>
+    <xul:hbox flex="1" debug="true">
+		<xul:label value="just a spacer" flex="1"/>
+	</xul:hbox>
+    </xul:hbox>
+  </xul:page>
+</script>
+</body>
+</html>

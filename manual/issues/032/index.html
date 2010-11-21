@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:my="myuri">
+<head>
+	<title>Test</title>
+	<style type="text/css">
+	html, body {
+		width: 100%;
+		margin: 0;
+	}
+	</style>
+	<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+	<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+	<script>
+	function myelement() {
+		this.contentFragment	= ample.createDocumentFragment();
+		this.hr	= this.contentFragment.appendChild(ample.createElement("hr"));
+		this.hr.appendChild(ample.createElement("hr"));
+		this.hr.setAttribute("test", "value");
+
+		// TEST constructor
+		document.getElementById("constructors").innerHTML	= "<font color=red>FAIL</font>";
+		try {
+		this.appendChild(ample.createElement("input"));
+		} catch (e) {
+			document.getElementById("constructors").innerHTML	= "<font color=green>PASS (" + e.message + ")</font>";
+		}
+	}
+	myelement.prototype	= new AMLElement;
+	myelement.prototype.localName		= "element";
+	myelement.prototype.namespaceURI	= "myuri";
+
+	myelement.handlers	= {
+		"DOMNodeInsertedIntoDocument":	function() {
+			// TEST handler
+			document.getElementById("handler").innerHTML	= "<font color=red>FAIL</font>";
+			try {
+			this.appendChild(ample.createElement("input"));
+			} catch (e) {
+				document.getElementById("handler").innerHTML	= "<font color=green>PASS (" + e.message + ")</font>";
+			}
+		}
+	};
+
+	myelement.prototype.method	= function() {
+		// TEST method
+		document.getElementById("method").innerHTML	= "<font color=red>FAIL</font>";
+		try {
+			this.appendChild(ample.createElement("input"));
+		} catch (e) {
+			document.getElementById("method").innerHTML	= "<font color=green>PASS (" + e.message + ")</font>";
+		}
+	};
+
+	myelement.prototype.$getTagOpen	= function() {
+		return '<div style="border:solid 1px red">\
+					<div>'+
+						this.hr.$getTag() + '\
+					</div>\
+					<div>';
+	}
+
+	myelement.prototype.$getTagClose	= function() {
+		return '	</div>\
+				</div>';
+	}
+
+	ample.extend(myelement);
+	</script>
+</head>
+
+<body>
+	<div>Call in constructor<span id="constructors"></span></div>
+	<div>Call in handler: <span id="handler">...</span></div>
+	<div>Call in method: <span id="method">...</span></div>
+	<script type="application/ample+xml">
+		<my:element id="element" onclick="this.appendChild(ample.createElement('hr'))"/>
+	</script>
+</body>
