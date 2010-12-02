@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ns="http://www.nedstat.com/ns/ui">
+	<head>
+		<title></title>
+		<style>
+		html, body {
+			height: 100%;
+		}
+		.header {
+			height:20px;
+			overflow:hidden;
+			background-color:lightgreen;
+		}
+		.footer {
+			height:20px;
+			overflow:hidden;
+			background-color:pink;
+		}
+		.content {
+			top:20px;
+			bottom:20px;
+			overflow:scroll;
+			background-color:lightblue;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="container" style="width:10%;height:30%">
+			<div style="position:relative;height:100%;width:100%;background-color:silver;overflow:hidden;">
+				<div class="header" style="position:absolute;width:100%;top:0">
+					header header header header header header header header header header
+				</div>
+				<div class="content" style="position:absolute;width:100%;">
+					content content content content content content content content content content content content
+					content content content content content content content content content content content content
+					content content content content content content content content content content content content
+					content content content content content content content content content content content content
+					content content content content content content content content content content content content
+				</div>
+				<div class="footer" style="position:absolute;width:100%;bottom:0;">
+					footer footer footer footer footer footer footer footer footer footer
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
