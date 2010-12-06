@@ -1,0 +1,18 @@
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<xul:page style="background-color:lightblue" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<xul:groupbox flex="1">
+	<xul:caption label="aaa"/>
+	<xul:grid flex="1">
+		<xul:rows flex="1">
+			<xul:row>
+				<xul:label value="label 1" />
+				<xul:textbox />
+			</xul:row>
+			<xul:row flex="1">
+				<xul:label value="label 2" />
+				<xul:textbox />
+			</xul:row>
+		</xul:rows>
+	</xul:grid>
+</xul:groupbox>
+</xul:page>
