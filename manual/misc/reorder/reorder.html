@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:aml="http://www.amplesdk.com/ns/aml">
+	<head>
+		<title>Reorder</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<style type="text/ample+css">
+		.droppable {
+			margin: 10px;
+			display: inline-block;
+			width: 140px;
+			height: 500px;
+			background-color: pink;
+			overflow: hidden;
+			overflow-y: scroll;
+		}
+		.droppable:drop {
+			outline: solid 1px red;
+		}
+		.droppable .spottable {
+			display: none;
+		}
+		.droppable:drop .spottable {
+			display: block;
+		}
+		.draggable {
+			width:	100px;
+			height: 100px;
+			margin:	10px;
+			background-color: lightgreen;
+		}
+		.draggable:drag {
+			outline: solid 1px green;
+			position: absolute;
+			z-index:1;
+		}
+		.spottable {
+			width:	100px;
+			height: 100px;
+			margin:	10px;
+			background-color: white;
+		}
+		</style>
+		<script>
+		function onDragOverHandler(oEvent) {
+			var oContainer	= oEvent.target,
+				oSpottable	= oContainer.querySelector(".spottable");
+
+			var oElement	= oEvent.relatedTarget,
+				oRectElement= oElement.getBoundingClientRect();
+			// Find the index where to show spot
+			for (var nIndex = 0, oBefore, oRectBefore, bSpotted = false; oBefore = oContainer.childNodes[nIndex]; nIndex++) {
+				if (oBefore == oSpottable)
+					bSpotted	= true;
+				else
+				if (oBefore != oElement) {
+					oRectBefore	= oBefore.getBoundingClientRect();
+					if (oRectElement.top - oRectBefore.top < (bSpotted ? -1 : 1) * (oRectElement.bottom - oRectElement.top) / 2)
+						break;
+				}
+			}
+
+			// Move spot if neccessary
+			if (oSpottable.nextSibling != oBefore)
+				oContainer.insertBefore(oSpottable, oBefore || null);
+		}
+
+		var nScrollInterval;
+		function onMouseMoveHandler(oEvent) {return;
+			var oContainer	= oEvent.currentTarget;
+			// Scroll
+			var oRectContainer	= oContainer.getBoundingClientRect();
+			if (oEvent.clientY > oRectContainer.top && oEvent.clientY < oRectContainer.top + 50)
+				nScrollInterval	= nScrollInterval || setInterval(function() {
+					oContainer.$getContainer().scrollTop-= 10;
+				}, 20);
+			else
+			if (oEvent.clientY < oRectContainer.bottom && oEvent.clientY > oRectContainer.bottom - 50)
+				nScrollInterval	= nScrollInterval || setInterval(function() {
+					oContainer.$getContainer().scrollTop+= 10;
+				}, 20);
+			else
+			if (nScrollInterval)
+				nScrollInterval	= clearInterval(nScrollInterval);
+		}
+		</script>
+	</head>
+	<body bgcolor="silver">
+		<div style="height:200px"></div>
+		<script>ample.open()</script>
+		<div class="droppable" aml:droppable="true"
+			onmousemove="onMouseMoveHandler(event)"
+			ondragover="onDragOverHandler(event)"
+			ondrop="this.insertBefore(event.relatedTarget, this.querySelector('.spottable'))"
+			>
+			<div class="draggable" aml:draggable="true">1</div>
+			<div class="draggable" aml:draggable="true">2</div>
+			<div class="draggable" aml:draggable="true">3</div>
+			<div class="draggable" aml:draggable="true">4</div>
+			<div class="draggable" aml:draggable="true">5</div>
+			<div class="draggable" aml:draggable="true">6</div>
+			<div class="draggable" aml:draggable="true">7</div>
+			<div class="spottable"></div>
+		</div>
+		<div class="droppable" aml:droppable="true"
+			ondragover="onDragOverHandler(event)"
+			ondrop="this.insertBefore(event.relatedTarget, this.querySelector('.spottable'))"
+			>
+			<div class="draggable" aml:draggable="true">1</div>
+			<div class="draggable" aml:draggable="true">2</div>
+			<div class="draggable" aml:draggable="true">3</div>
+			<div class="spottable"></div>
+		</div>
+		<script>ample.close()</script>
+	</body>
+</html>
