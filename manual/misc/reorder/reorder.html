@@ -4,15 +4,24 @@
 		<title>Reorder</title>
 		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
 		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<style>
+		html, body {
+			overflow: hidden;
+		width:100%;
+		height:100%;
+
+		}
+		</style>
 		<style type="text/ample+css">
 		.droppable {
 			margin: 10px;
 			display: inline-block;
 			width: 140px;
-			height: 500px;
+			height: 300px;
 			background-color: pink;
 			overflow: hidden;
 			overflow-y: scroll;
+			position: relative;
 		}
 		.droppable:drop {
 			outline: solid 1px red;
@@ -32,7 +41,6 @@
 		.draggable:drag {
 			outline: solid 1px green;
 			position: absolute;
-			z-index:1;
 		}
 		.spottable {
 			width:	100px;
@@ -66,22 +74,33 @@
 		}
 
 		var nScrollInterval;
-		function onMouseMoveHandler(oEvent) {return;
+		function onMouseMoveHandler(oEvent) {//return;
+			if (!isDragging)
+				return;
+
 			var oContainer	= oEvent.currentTarget;
 			// Scroll
 			var oRectContainer	= oContainer.getBoundingClientRect();
 			if (oEvent.clientY > oRectContainer.top && oEvent.clientY < oRectContainer.top + 50)
-				nScrollInterval	= nScrollInterval || setInterval(function() {
+//				nScrollInterval	= nScrollInterval || setInterval(function() {
 					oContainer.$getContainer().scrollTop-= 10;
-				}, 20);
+//				}, 20);
 			else
 			if (oEvent.clientY < oRectContainer.bottom && oEvent.clientY > oRectContainer.bottom - 50)
-				nScrollInterval	= nScrollInterval || setInterval(function() {
+//				nScrollInterval	= nScrollInterval || setInterval(function() {
 					oContainer.$getContainer().scrollTop+= 10;
-				}, 20);
-			else
-			if (nScrollInterval)
-				nScrollInterval	= clearInterval(nScrollInterval);
+//				}, 20);
+//			else
+//			if (nScrollInterval)
+//				nScrollInterval	= clearInterval(nScrollInterval);
+		}
+
+		var isDragging	= false;
+		function onDragStart() {
+			isDragging	= true;
+		}
+		function onDragStart() {
+			isDragging	= false;
 		}
 		</script>
 	</head>
@@ -89,6 +108,8 @@
 		<div style="height:200px"></div>
 		<script>ample.open()</script>
 		<div class="droppable" aml:droppable="true"
+			ondragstart="onDragStart(event)"
+			ondragend="onDragEnd(event)"
 			onmousemove="onMouseMoveHandler(event)"
 			ondragover="onDragOverHandler(event)"
 			ondrop="this.insertBefore(event.relatedTarget, this.querySelector('.spottable'))"
