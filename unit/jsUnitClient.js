@@ -73,7 +73,7 @@ var JsUnitClient	= (function() {
 	};
 
 	// Get client base Uri
-	var sBaseUriClient	= (function() {var aScripts	= document.getElementsByTagName("script"); return aScripts[aScripts.length - 1].src})();
+	var sBaseUriClient	= (function() {var aScripts	= document.getElementsByTagName("script"); return fResolveUri(aScripts[aScripts.length - 1].src, document.location.href)})();
 
 	function fWriteScript(sUrl) {
 		document.write('<script type="text/javascript" src="' + fResolveUri(sUrl, sBaseUriClient) + '"></script>');
