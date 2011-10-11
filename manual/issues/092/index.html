@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Issue 092</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xul/xul.js"></script>
+		<link type="text/ample+css" href="../../../../amplesdk/ample/languages/xul/themes/default/style.css" rel="stylesheet"/>
+		<script>
+            var buttoncounter = 2;
+			function test(kind) {
+                buttoncounter++;
+				if (kind) {
+					var buttoncode =
+				         '<xul:toolbarbutton'
+				         +' xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"'
+				         +' id="button'+buttoncounter+'"'
+				         +' label="Button '+buttoncounter+'"'
+				         +' command="cmd_button'+buttoncounter+'"'
+				         +' />';
+					ample.query("#buttonspacer").before(buttoncode);
+				}
+				else {
+					var button = ample.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "xul:toolbarbutton");
+					button.setAttribute("label", "Button "+buttoncounter);
+					ample.getElementById("toolbar1").insertBefore(button,ample.getElementById('buttonspacer'));
+				}
+			}
+		</script>
+	</head>
+	<body bgcolor="silver">
+		<script>ample.open()</script>
+		<xul:toolbar id="toolbar1">
+			<xul:toolbarbutton id="button1" label="Button 1" command="cmd_button1" />
+			<xul:toolbarseparator id="buttonspacer" flex="1" />
+			<xul:toolbarbutton id="button2" label="Button 2" command="cmd_button2" />
+		</xul:toolbar>
+		<script>ample.close()</script>
+		<button onclick="test(1)">jQuery API: before()</button> <button onclick="test(0)">DOM API: insertBefore()</button>
+	</body>
+</html>
