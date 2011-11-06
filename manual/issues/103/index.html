@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Issue 103</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+	</head>
+	<body bgcolor="silver">
+		<script>ample.open()</script>
+		<ul><li>111</li><li>222</li><li>333</li><li>444</li></ul>
+		<script>ample.close()</script>
+
+		<button onclick="var items = ample.query('ul')[0].childNodes; items[0].parentNode.insertBefore(items[0], items[1]);">items[0].parentNode.insertBefore(items[0], items[1]);</button>
+		<button onclick="var items = ample.query('ul')[0].childNodes; items[0].parentNode.insertBefore(items[1], items[0]);">items[0].parentNode.insertBefore(items[1], items[0]);</button>
+		<hr />
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[1]).insertAfter(items[0])">insertAfter</button>
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[0]).after(items[1])">after</button>
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[1]).insertBefore(items[0])">insertBefore</button>
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[0]).before(items[1])">before</button>
+		<hr />
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[0]).insertAfter(items[1])">insertAfter</button>
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[1]).after(items[0])">after</button>
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[0]).insertBefore(items[1])">insertBefore</button>
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[1]).before(items[0])">before</button>
+		<hr />
+		<button onclick="var items = ample.query('ul li'); items.slice(0, 2).insertAfter(items.slice(2, 4))">insertAfter 2</button>
+		<button onclick="var items = ample.query('ul li'); items.slice(2, 4).after(items.slice(0, 2))">after 2</button>
+		<button onclick="var items = ample.query('ul li'); items.slice(0, 2).insertBefore(items.slice(2, 4))">insertBefore 2</button>
+		<button onclick="var items = ample.query('ul li'); items.slice(2, 4).before(items.slice(0, 2))">before 2</button>
+		<hr />
+		<button onclick="var items = ample.query('ul li'); items.slice(2, 4).insertAfter(items.slice(0, 2))">insertAfter 2</button>
+		<button onclick="var items = ample.query('ul li'); items.slice(0, 2).after(items.slice(2, 4))">after 2</button>
+		<button onclick="var items = ample.query('ul li'); items.slice(2, 4).insertBefore(items.slice(0, 2))">insertBefore 2</button>
+		<button onclick="var items = ample.query('ul li'); items.slice(0, 2).before(items.slice(2, 4))">before 2</button>
+		<hr />
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[0]).prependTo(items[1])">prependTo</button>
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[1]).prepend(items[0])">prepend</button>
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[0]).prependTo(items[1])">prependTo</button>
+		<button onclick="var items = ample.query('ul')[0].childNodes; ample.query(items[1]).prepend(items[0])">prepend</button>
+	</body>
+</html>
