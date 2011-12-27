@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <vbox id="append-noid-insertafter">
+        <label insertafter="append-noid-insertafter-1" value="correct" />
+        <label insertafter="append-noid-insertafter-3" value="correct" />
+        <label insertafter="append-noid-insertafter-4" value="correct" />
+    </vbox>
+</overlay>
