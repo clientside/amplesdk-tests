@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <vbox id="append-id">
+        <label id="append-id-2" value="correct" />
+        <label id="append-id-3" value="correct" />
+    </vbox>
+</overlay>

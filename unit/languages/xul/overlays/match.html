@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>JsUnit testing page</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../../jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+			JsUnitClient.include("languages/xul/xul.js");
+		</script>
+		<script type="text/javascript" src="standardtest.js"></script>
+
+		<!-- Tests -->
+		<script type="text/javascript">
+            setUpPageStatus = 'Uninstantiated';
+			// Using element in markup
+			function testXULimport() {
+                standard_test('match',5);
+                checkExists('match',[1,2,3,4,5]);
+                checkIDs('match',[1,2,3,4,5]);
+			}
+    	</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page - XUL Overlays</p>
+        <script>
+               ample.ready(function() {
+                   setUpPageStatus = 'Loading';
+                   // Load overlay
+                   ample.documentElement.ownerDocument.loadOverlay('match.xul', function() { setUpPageStatus = 'complete'; console.log(ample.documentElement.toXML()); }); 
+               });
+        </script>
+		<script type="application/ample+xml">            
+        <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	        <vbox id="match">
+	            <label id="match-1" />
+	            <label id="match-2" value="correct"/>
+	            <label id="match-3" />
+	            <label id="match-4" value="correct"/>
+	            <label id="match-5" />
+            </vbox>
+        </page>
+		</script>
+	</body>
+</html>

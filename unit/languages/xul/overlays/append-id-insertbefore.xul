@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <vbox id="append-id-insertbefore">
+        <label id="append-id-insertbefore-2" insertbefore="append-id-insertbefore-3" value="correct" />
+        <label id="append-id-insertbefore-1" insertbefore="append-id-insertbefore-2" value="correct" />
+        <label id="append-id-insertbefore-4" insertbefore="append-id-insertbefore-5" value="correct" />
+    </vbox>
+</overlay>

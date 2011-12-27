@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>JsUnit testing page</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../../jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+			JsUnitClient.include("languages/xul/xul.js");
+		</script>
+		<script type="text/javascript" src="standardtest.js"></script>
+
+		<!-- Tests -->
+		<script type="text/javascript">
+            setUpPageStatus = 'Uninstantiated';
+            // Test application of overlay
+			function testXULimport() {
+                standard_test('append-id',3);
+                checkExists('append-id',[1,2,3]);
+                checkIDs('append-id',[1,2,3]);
+			}
+    	</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page - XUL Overlays</p>
+        <script>
+               ample.ready(function() {
+                   setUpPageStatus = 'Loading';
+                   // Load overlay
+                   ample.documentElement.ownerDocument.loadOverlay('append-id.xul', function() { setUpPageStatus = 'complete'; console.log(ample.documentElement.toXML()); }); 
+               });
+        </script>
+		<script type="application/ample+xml">
+        <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+            <vbox id="append-id">
+                <label id="append-id-1" value="correct" />
+            </vbox>
+        </page>
+        </script>
+	</body>
+</html>
