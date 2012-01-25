@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>JsUnit testing page</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../../jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+			JsUnitClient.include("languages/xul/xul.js");
+		</script>
+		<script type="text/javascript" src="standardtest.js"></script>
+
+		<!-- Tests -->
+		<script type="text/javascript">
+            setUpPageStatus = 'Uninstantiated';
+			// Using element in markup
+			function testXULimport() {
+                standard_test('append-noid-position',5);
+                checkExists('append-noid-position',[1,2,3,4,5]);
+                checkIDs('append-noid-position',[2,4]);
+			}
+    	</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page - XUL Overlays</p>
+        <script>
+               ample.ready(function() {
+                   setUpPageStatus = 'Loading';
+                   // Load overlay
+                   ample.documentElement.ownerDocument.loadOverlay('append-noid-position.xul', function() { setUpPageStatus = 'complete'; console.log(ample.documentElement.toXML()); }); 
+               });
+        </script>
+		<script type="application/ample+xml">            
+        <page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	        <vbox id="append-noid-position">
+	            <label id="append-noid-position-2" value="correct" />
+	            <label id="append-noid-position-4" value="correct" />
+            </vbox>
+        </page>
+		</script>
+	</body>
+</html>
