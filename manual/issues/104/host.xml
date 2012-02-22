@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<?xul-overlay href="part1.xml"?>
+<?xul-overlay href="part2.xml"?>
+<page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <vbox id="osite1">
+    <description>Main Box A</description>
+  </vbox>
+  <vbox id="osite2">
+    <description>Main Box B</description>
+  </vbox>
+</page>

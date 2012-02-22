@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Ample Test Case</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xul/xul.js"></script>
+		<link type="text/ample+css" href="../../../../amplesdk/ample/languages/xul/themes/default/style.css" rel="stylesheet"/>
+		<style type="text/css">
+			html, body {
+				width:	100%;
+				height: 100%;
+				padding:0;
+				margin:	0;
+				overflow:hidden;
+			}
+			body {
+				border: 0;
+				font-family: Arial;
+				font-size: 13px;
+			}
+		</style>
+		<script type="text/javascript">
+        ample.ready(function(){
+            for (var i = 100; i > 0; i--) {
+                var message = i+" bottles of beer on the wall, "+i+" bottles of beer, if one of those bottles should accidentally fall there\'d be "+(i-1)+" bottles of beer on the wall.";
+    			ample.query("#messages").append('<xul:label>'+message+'</xul:label>');
+            }
+        });
+		</script>
+	</head>
+	<body bgcolor="silver">
+        <script type="application/ample+xml">
+        <xul:page xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+			<xul:deck />
+			<xul:deck>
+				<xul:description>description 1 (visible, no selectedIndex set)</xul:description>
+				<xul:description>description 2 (hidden)</xul:description>
+			</xul:deck>
+			<xul:deck selectedIndex="0">
+				<xul:description>description 1 (visible, selectedIndex="0")</xul:description>
+				<xul:description>description 2 (hidden)</xul:description>
+			</xul:deck>
+			<xul:deck selectedIndex="1">
+				<xul:description>description 1 (hidden)</xul:description>
+				<xul:description>description 2 (visible, selectedIndex="1")</xul:description>
+			</xul:deck>
+        </xul:page>
+        </script>
+	</body>
+</html>

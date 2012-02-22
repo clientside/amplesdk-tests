@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Test case for XMLSerializer</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+    <style type="text/css">
+        #viewLocal, #viewAjax {
+            height: 120px;
+            width: 400px;
+            margin: 10px;
+            padding: 2px;
+            overflow: auto;
+            border: 1px solid #aaa;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test case for XMLSerializer in IE9</h1>
+
+    <p>Press '<em>Load local data</em>' to load some data from the page itself and convert it to a string.</p>
+    <button onclick="loadLocal()">Load local data</button>
+    <div id="viewLocal">-- no data --</div>
+
+    <p>Press '<em>Load Ajax data</em>' to serialize XML loaded via Ajax.</p>
+    <button onclick="loadAjax()">Load Ajax data</button>
+    <div id="viewAjax">-- no data --</div>
+
+    <script type="text/javascript">
+        function loadLocal() {
+            // get the XML from the document as a string; then parse it to XML so we can exercise serializeToString()
+            var sRaw = document.getElementById('t1').innerHTML;
+            var dp = new DOMParser();
+            var oDoc = dp.parseFromString(sRaw, 'text/xml');
+            var oRoot = oDoc.documentElement;
+            var oXS = new XMLSerializer();
+            var sXML = oXS.serializeToString(oRoot);
+            document.getElementById('viewLocal').innerHTML = sXML.replace(/\</g,'&lt;').replace(/\>/g, '&gt;').replace(/\n/g,'<br/>');
+        }
+        function loadAjax() {
+            var that = this;
+            var oRequest = {};
+            oRequest.type = 'GET';
+            oRequest.dataType = 'xml';
+            oRequest.url = 'vanuatu.xml';
+            oRequest.error = function(oXHR) {
+                alert('failed to load XML from vanuatu.xml');
+            };
+            oRequest.success = function(oDoc, success, oXHR) {
+                var oRoot = oDoc.documentElement;
+                var oXS = new XMLSerializer();
+                var sXML = oXS.serializeToString(oRoot);
+                console.log(sXML);
+                document.getElementById('viewAjax').innerHTML = sXML.replace(/\</g,'&lt;').replace(/\>/g, '&gt;').replace(/\n/g,'<br/>');
+            }
+            ample.ajax(oRequest);
+        }
+        function loadAjax2() {
+            var o = new XMLHttpRequest;
+            o.open("GET", "vanuatu.xml", true);
+            o.onreadystatechange = function() {
+            	if (o.readyState == 4) {
+                    var oRoot = o.responseXML.documentElement;
+                    var oXS = new XMLSerializer();
+                    var sXML = oXS.serializeToString(oRoot);
+                    console.log(sXML);
+                    document.getElementById('viewAjax').innerHTML = sXML.replace(/\</g,'&lt;').replace(/\>/g, '&gt;').replace(/\n/g,'<br/>');
+
+            	}
+            }
+
+            o.send();
+        }
+    </script>
+
+    <script type="text/xml" id="t1">
+        <dataSet>
+            <record id='SQT26NWC'>
+                <company>Jayme Winters</company>
+                <price>80</price>
+                <increase>0</increase>
+                <state>SQT26NWC</state>
+                <email>aa@aa.edu</email>
+            </record>
+            <record id='RJI15OAB' disabled="true">
+                <company>Elaine Morrow</company>
+                <price>89</price>
+                <increase>1</increase>
+                <state>RJI15OAB</state>
+                <email>bb@bb.com</email>
+            </record>
+            <record id='XWE64AEE'>
+                <company>Darrel Obrien</company>
+                <price>79</price>
+                <increase>0</increase>
+                <state>XWE64AEE</state>
+                <email>cc@cc.org</email>
+            </record>
+        </dataSet>
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xul:page [
+	<!ENTITY visit_us_at "visit us at">
+	<!ENTITY autorun "Autorun">
+]>
+<xul:page xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<xul:description>
+		&visit_us_at;
+	</xul:description>
+	<xul:description>
+		&autorun;
+	</xul:description>
+</xul:page>

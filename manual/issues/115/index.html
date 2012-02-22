@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Ample Test Case</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xul/xul.js"></script>
+		<link type="text/ample+css" href="../../../../amplesdk/ample/languages/xul/themes/default/style.css" rel="stylesheet"/>
+	</head>
+	<body bgcolor="silver">
+		<script>ample.open()</script>
+<xul:page xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="core_main">
+	<xul:commandset>
+		<xul:command id="document-print-console"/>
+		<xul:command id="document-save"/>
+		<xul:command id="document-saveTestCase"/>
+		<xul:command id="xxx_c" oncommand="alert('oncommand')"/>
+	</xul:commandset>
+	<xul:keyset>
+		<xul:key id="shortcut-document-print" modifiers="alt" key="U+004C" command="document-print-console"/>
+		<xul:key id="shortcut-document-save" modifiers="alt" key="U+0053" command="document-save"/>
+		<xul:key id="shortcut-document-saveTestCase" modifiers="alt" key="U+0054" command="document-saveTestCase"/>
+		<xul:key id="xxx" key="U+0053" soncommand="alert('oncommand key')" xcommand="xxx_c"/>
+	</xul:keyset>
+    <xul:label value="test" />
+</xul:page>
+
+	<xul:window orient="vertical" width="300" height="200" title="Retromod Login" id="core_loginwindow">
+		<xul:commandset>
+			<xul:command id="cmd_signin" oncommand="signIn()"/>
+			<xul:command id="cmd_signout" disabled="true" oncommand="signOut()"/>
+		</xul:commandset>
+		<xul:vbox orient="vertical" flex="1">
+			<xul:vbox orient="vertical" width="200" align="center">
+				<xul:spacer height="5"/>
+				<xul:label value="Login:"/>
+				<xul:textbox min="0" max="Infinity" increment="1" value="user" id="LoginName" style="width:200px"/>
+				<xul:spacer height="5"/>
+				<xul:label value="Password:"/>
+				<xul:textbox min="0" max="Infinity" increment="1" value="password" id="LoginPassword" type="password" style="width:200px"/>
+				<xul:spacer height="5"/>
+				<xul:checkbox id="LoginRemember" label="Remember me" checked="true"/>
+				<xul:spacer height="10"/>
+				<xul:hbox orient="horizontal" flex="1" pack="center">
+					<xul:button label="Sign In" command="cmd_signin" oncommand="signIn()"/>
+				</xul:hbox>
+			</xul:vbox>
+		</xul:vbox>
+	</xul:window>
+		<script>ample.close()</script>
+	</body>
+</html>

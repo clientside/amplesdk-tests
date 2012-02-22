@@ -21,6 +21,7 @@
 				else {
 					var button	= ample.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "xul:toolbarbutton");
 					button.setAttribute("label", "Button 3");
+					button.setAttribute("id", "button3");
 					ample.getElementById("toolbar1").appendChild(button);
 				}
 			}
@@ -28,11 +29,13 @@
 	</head>
 	<body bgcolor="silver">
 		<script>ample.open()</script>
-		<xul:toolbar id="toolbar1">
-			<xul:toolbarbutton id="button1" label="Button 1" command="cmd_button1" />
-			<xul:toolbarbutton id="button2" label="Button 2" command="cmd_button2" />
-		</xul:toolbar>
+		<xul:page>
+			<xul:toolbar id="toolbar1">
+				<xul:toolbarbutton id="button1" label="Button 1" command="cmd_button1" />
+				<xul:toolbarbutton id="button2" label="Button 2" command="cmd_button2" />
+			</xul:toolbar>
+			<xul:button onclick="test(1)">jQuery API</xul:button> <xul:button onclick="test(0)">DOM API</xul:button>
+		</xul:page>
 		<script>ample.close()</script>
-		<button onclick="test(1)">jQuery API</button> <button onclick="test(0)">DOM API</button>
 	</body>
 </html>
