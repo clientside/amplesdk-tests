@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Issue 079</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<script>
+			function test1() {
+				ample.query("<input />").attr("value", '&').appendTo("#div1");
+			}
+			function test2() {
+				ample.query("<input />").appendTo("#div2").attr("value", '&');
+			}
+			function test3() {
+				ample.query("<input />").attr("value", '&amp;').appendTo("#div3");
+			}
+			function test4() {
+				ample.query("<input />").appendTo("#div4").attr("value", '&amp;');
+			}
+		</script>
+	</head>
+	<body bgcolor="silver">
+		<script>ample.open()</script>
+		<h4 onclick="test1()">Click to Test 1</h4>
+		<div id="div1" />
+		<h4 onclick="test2()">Click to Test 2</h4>
+		<div id="div2" />
+		<h4 onclick="test3()">Click to Test 3</h4>
+		<div id="div3" />
+		<h4 onclick="test4()">Click to Test 4</h4>
+		<div id="div4" />
+		<script>ample.close()</script>
+	</body>
+</html>

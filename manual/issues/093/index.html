@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Issue 093</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime-dev.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xul/xul.js"></script>
+		<link type="text/ample+css" href="../../../../amplesdk/ample/languages/xul/themes/default/style.css" rel="stylesheet"/>
+		<style type="text/ample+css">
+			xul|box::-box-container {
+				border: solid 1px blue;
+				padding: 4px;
+			}
+			xul|box::-box-child {
+				border: solid 1px red;
+				padding: 4px;
+			}
+		</style>
+		<script type="text/javascript">
+			function testBefore() {
+				var oAnchor	= ample.getElementById("buttonspacer");
+				var oElement	= ample.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "xul:toolbarbutton");
+				oElement.setAttribute("label", "before");
+				oAnchor.parentNode.insertBefore(oElement, oAnchor);
+			}
+			function testAfter() {
+				var oAnchor	= ample.getElementById("buttonspacer");
+				var oElement	= ample.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "xul:toolbarbutton");
+				oElement.setAttribute("label", "after");
+				oAnchor.parentNode.insertBefore(oElement, oAnchor.nextSibling);
+			}
+		</script>
+	</head>
+	<body bgcolor="silver">
+		<script>ample.open()</script>
+		<xul:toolbar id="toolbar1">
+			<xul:toolbarbutton id="buttonstart" label="Start"/>
+			<xul:toolbarspacers id="buttonspacer" flex="1"/>
+			<xul:toolbarbutton id="buttonend" label="End"/>
+		</xul:toolbar>
+		<script>ample.close()</script>
+		<button onclick="testBefore()">insertedBefore()</button> <button onclick="testAfter()">insertAfter()</button>
+	</body>
+</html>

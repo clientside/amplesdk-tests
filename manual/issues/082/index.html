@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Issue 082</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/svg/svg.js"></script>
+	</head>
+	<body>
+<script>ample.open()</script>
+<svg:svg viewBox="0,0 200,200" width="200px" height="200px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:smil="http://www.w3.org/2008/SMIL30/">
+    <svg:circle id="test" cx="100" cy="100" r="50" stroke="red" fill="pink" />
+</svg:svg>
+<script>ample.close()</script>
+
+<div>setAttribute():
+<button onclick="ample.getElementById('test').setAttribute('r', '100')">setAttribute('r', '100')</button>
+<button onclick="ample.getElementById('test').setAttribute('r', '50')">setAttribute('r', '50')</button>
+<button onclick="ample.getElementById('test').setAttribute('fill', 'silver')">setAttribute('fill', 'silver')</button>
+<button onclick="ample.getElementById('test').setAttribute('fill', 'pink')">setAttribute('fill', 'pink')</button>
+</div>
+	</body>
+</html>

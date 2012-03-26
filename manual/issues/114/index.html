@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Issue 114</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xul/xul.js"></script>
+		<link type="text/ample+css" href="../../../../amplesdk/ample/languages/xul/themes/default/style.css" rel="stylesheet"/>
+	</head>
+	<body bgcolor="silver">
+		<h4>Try pressing following key combinations (alert should come): p, shift+d, ctrl+w, alt(option)+a, meta+e</h4>
+		<script>ample.open()</script>
+	<xul:keyset>
+		<xul:key id="shortcut-document-print" key="p" oncommand="alert('p')"/>
+		<xul:key id="shortcut-document-save" modifiers="shift" key="d" oncommand="alert('shift+d')"/>
+		<xul:key id="shortcut-document-save" modifiers="ctrl" key="w" oncommand="alert('ctrl+w')"/>
+		<xul:key id="shortcut-document-save" modifiers="alt" key="a" oncommand="alert('alt+a')"/>
+		<xul:key id="shortcut-document-saveTestCase" modifiers="meta" key="e" oncommand="alert('meta+e')"/>
+	</xul:keyset>
+		<script>ample.close()</script>
+	</body>
+</html>
