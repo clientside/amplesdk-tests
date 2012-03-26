@@ -12,12 +12,6 @@
 
 		<!-- Suite definition -->
 		<script type="text/javascript">
-			var bFragmentLoaded	= false;
-
-			// Tests if load event was fired on ample fragment
-			function testFragmentLoadEvent() {
-				assertTrue(bFragmentLoaded);
-			}
 			function testFragmentsCount() {
 				assertEquals(ample.documentElement.childNodes.length, 2);
 			}
@@ -31,7 +25,7 @@
 	</head>
 	<body>
 		<p>Ample SDK JsUnit test page</p>
-		<script type="application/ample+xml" onload="bFragmentLoaded = true">fragment #1</script>
+		<script type="application/ample+xml">fragment #1</script>
 		<script type="text/javascript">ample.open()</script>fragment #2<script type="text/javascript">ample.close()</script>
 	</body>
 </html>
