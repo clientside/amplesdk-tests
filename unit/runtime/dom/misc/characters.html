@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html xmlns:test="http://www.amplesdk.com/ui/test">
+	<head>
+    	<title>JsUnit testing page</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../../jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+		</script>
+
+		<style>
+			blockquote {
+				border: solid 1px red;
+				padding: 2px;
+				margin: 5px;
+			}
+			body > div {
+				border: solid 1px gray;
+				padding: 5px;
+				margin: 5px;
+			}
+		</style>
+
+		<script type="text/javascript">
+			// abstract language implementation
+			(function() {
+				var cElement	= function() {};
+				cElement.prototype	= new ample.classes.Element;
+				cElement.prototype.localName	= "test";
+				cElement.prototype.namespaceURI	= "http://www.amplesdk.com/ui/test";
+				cElement.prototype.$getTagOpen	= function() {
+					return '<blockquote' + (this.attributes.test ? ' title="' + ample.$encodeXMLCharacters(this.attributes.test) + '"' : '') + ' class="test-test">';
+				};
+				cElement.prototype.$getTagClose	= function() {
+					return '</blockquote>';
+				};
+				cElement.handlers	= {
+					"DOMAttrModified":	function(oEvent) {
+						if (oEvent.target == this) {
+							switch (oEvent.attrName) {
+								case "test":
+									this.$getContainer().setAttribute("title", oEvent.newValue || '');
+									break;
+							}
+						}
+					}
+				};
+				ample.extend(cElement);
+			})();
+
+			//
+			function getShadowAttribute(shadow) {
+				return shadow.getAttribute("title");
+			}
+			function getShadowTextContent(shadow) {
+				return shadow.textContent || shadow.innerText;
+			}
+		</script>
+
+
+		<script type="text/javascript">
+			// Helper functions
+			function doSetAttributeAmp(element) {
+				element.setAttribute("test", "&");
+			}
+			function doSetAttributeAmpEntity(element) {
+				element.setAttribute("test", "&amp;");
+			}
+			function doSetAttributeDoubleQuotes(element) {
+				element.setAttribute("test", '"value');
+			}
+			function doSetAttributeSingleQuotes(element) {
+				element.setAttribute("test", "'value");
+			}
+			function doSetAttributeQuotationEntities(element) {
+				element.setAttribute("test", "&quot; &apos;");
+			}
+			function doSetAttributeLtGtEntities(element) {
+				element.setAttribute("test", "&lt;value&gt; &copy;");
+			}
+			function doSetAttributeLtGtValues(element) {
+				element.setAttribute("test", "<value> ©");
+			}
+			function doSetContentEntities(element) {
+				ample.query(element).text("&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;");
+			}
+			function doSetContentValues(element) {
+				ample.query(element).text('&"©\' <i>text</i> <');
+			}
+			// First modify then append
+			function doModifyAppendSetAttribute(parent, fTest) {
+				var element	= ample.createElementNS("http://www.amplesdk.com/ui/test", "test:test");
+				fTest(element);
+				parent.appendChild(element);
+			}
+			function doModifyAppendSetContent(parent, fTest) {
+				var element	= ample.createElementNS("http://www.amplesdk.com/ui/test", "test:test");
+				fTest(element);
+				parent.appendChild(element);
+			}
+			// First append then modify
+			function doAppendModifySetAttribute(parent, fTest) {
+				var element	= ample.createElementNS("http://www.amplesdk.com/ui/test", "test:test");
+				parent.appendChild(element);
+				fTest(element);
+			}
+			function doAppendModifySetContent(parent, fTest) {
+				var element	= ample.createElementNS("http://www.amplesdk.com/ui/test", "test:test");
+				parent.appendChild(element);
+				fTest(element);
+			}
+		</script>
+
+		<!-- Suite definition -->
+		<script type="text/javascript">
+			var shouldTestShadow	= true;
+
+			// 1. Setting/Getting &
+			function testXmlAttribute_Amp() {
+				var element	= ample.getElementById("test11");
+				assertNull(element);	// Should be null since XML parsing should have failed
+			}
+			function testSetAttribute_Amp() {
+				var element	= ample.getElementById("test12");
+				assertEquals("&", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("&", getShadowAttribute(shadow));
+				}
+			}
+			function testModifyAppendSetAttribute_Amp() {
+				var element	= ample.getElementById("test13").firstChild;
+				assertEquals("&", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("&", getShadowAttribute(shadow));
+				}
+			}
+			function testAppendModifySetAttribute_Amp() {
+				var element	= ample.getElementById("test14").firstChild;
+				assertEquals("&", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("&", getShadowAttribute(shadow));
+				}
+			}
+			// 2. Setting/Getting &amp;
+			function testXmlAttribute_AmpEntity() {
+				var element	= ample.getElementById("test21");
+				assertEquals("&", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("&", getShadowAttribute(shadow));
+				}
+			}
+			function testSetAttribute_AmpEntity() {
+				var element	= ample.getElementById("test22");
+				assertEquals("&amp;", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("&amp;", getShadowAttribute(shadow));
+				}
+			}
+			function testModifyAppendSetAttribute_AmpEntity() {
+				var element	= ample.getElementById("test23").firstChild;
+				assertEquals("&amp;", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("&amp;", getShadowAttribute(shadow));
+				}
+			}
+			function testAppendModifySetAttribute_AmpEntity() {
+				var element	= ample.getElementById("test24").firstChild;
+				assertEquals("&amp;", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("&amp;", getShadowAttribute(shadow));
+				}
+			}
+			// 3. Setting/Getting <"value>
+			function testXmlAttribute_DoubleQuotes() {
+				var element	= ample.getElementById("test31");
+				assertEquals('"value', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('"value', getShadowAttribute(shadow));
+				}
+			}
+			function testSetAttribute_DoubleQuotes() {
+				var element	= ample.getElementById("test32");
+				assertEquals('"value', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('"value', getShadowAttribute(shadow));
+				}
+			}
+			function testModifyAppendSetAttribute_DoubleQuotes() {
+				var element	= ample.getElementById("test33").firstChild;
+				assertEquals('"value', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('"value', getShadowAttribute(shadow));
+				}
+			}
+			function testAppendModifySetAttribute_DoubleQuotes() {
+				var element	= ample.getElementById("test34").firstChild;
+				assertEquals('"value', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('"value', getShadowAttribute(shadow));
+				}
+			}
+			// 4. Setting/Getting '
+			function testXmlAttribute_SingleQuotes() {
+				var element	= ample.getElementById("test41");
+				assertEquals("'value", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("'value", getShadowAttribute(shadow));
+				}
+			}
+			function testSetAttribute_SingleQuotes() {
+				var element	= ample.getElementById("test42");
+				assertEquals("'value", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("'value", getShadowAttribute(shadow));
+				}
+			}
+			function testModifyAppendSetAttribute_SingleQuotes() {
+				var element	= ample.getElementById("test43").firstChild;
+				assertEquals("'value", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("'value", getShadowAttribute(shadow));
+				}
+			}
+			function testAppendModifySetAttribute_SingleQuotes() {
+				var element	= ample.getElementById("test44").firstChild;
+				assertEquals("'value", element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals("'value", getShadowAttribute(shadow));
+				}
+			}
+			// 5. Setting/Getting &quot; in single qoutes
+			function testXmlAttribute_QuotEntity() {
+				var element	= ample.getElementById("test51");
+				assertEquals('" \'', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('" \'', getShadowAttribute(shadow));
+				}
+			}
+			function testSetAttribute_QuotEntity() {
+				var element	= ample.getElementById("test52");
+				assertEquals('&quot; &apos;', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&quot; &apos;', getShadowAttribute(shadow));
+				}
+			}
+			function testModifyAppendSetAttribute_QuotEntity() {
+				var element	= ample.getElementById("test53").firstChild;
+				assertEquals('&quot; &apos;', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&quot; &apos;', getShadowAttribute(shadow));
+				}
+			}
+			function testAppendModifySetAttribute_QuotEntity() {
+				var element	= ample.getElementById("test54").firstChild;
+				assertEquals('&quot; &apos;', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&quot; &apos;', getShadowAttribute(shadow));
+				}
+			}
+			// 6. Setting/Getting &quot; in double qoutes
+			function testXmlAttribute_QuotEntityInSingleQuotes() {
+				var element	= ample.getElementById("test61");
+				assertEquals('" \'', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('" \'', getShadowAttribute(shadow));
+				}
+			}
+			// 7. Setting/Getting &lt;value&gt;
+			function testXmlAttribute_LtGtEntities() {
+				var element	= ample.getElementById("test71");
+				assertEquals('<value> ©', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('<value> ©', getShadowAttribute(shadow));
+				}
+			}
+			function testSetAttribute_LtGtEntities() {
+				var element	= ample.getElementById("test72");
+				assertEquals('&lt;value&gt; &copy;', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&lt;value&gt; &copy;', getShadowAttribute(shadow));
+				}
+			}
+			function testModifyAppendSetAttribute_LtGtEntities() {
+				var element	= ample.getElementById("test73").firstChild;
+				assertEquals('&lt;value&gt; &copy;', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&lt;value&gt; &copy;', getShadowAttribute(shadow));
+				}
+			}
+			function testAppendModifySetAttribute_LtGtEntities() {
+				var element	= ample.getElementById("test74").firstChild;
+				assertEquals('&lt;value&gt; &copy;', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&lt;value&gt; &copy;', getShadowAttribute(shadow));
+				}
+			}
+			// 8. Setting/Getting <value> ©
+			function testXmlAttribute_LtGtValues() {
+				var element	= ample.getElementById("test81");	// Should be parse error
+				assertNull(element);
+			}
+			function testSetAttribute_LtGtValues() {
+				var element	= ample.getElementById("test82");
+				assertEquals('<value> ©', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('<value> ©', getShadowAttribute(shadow));
+				}
+			}
+			function testModifyAppendSetAttribute_LtGtValues() {
+				var element	= ample.getElementById("test83").firstChild;
+				assertEquals('<value> ©', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('<value> ©', getShadowAttribute(shadow));
+				}
+			}
+			function testAppendModifySetAttribute_LtGtValues() {
+				var element	= ample.getElementById("test84").firstChild;
+				assertEquals('<value> ©', element.getAttribute("test"));
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('<value> ©', getShadowAttribute(shadow));
+				}
+			}
+			// 9. Setting/Getting &amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt; text content
+			function testXmlText_Entities() {
+				var element	= ample.getElementById("test91");
+				assertEquals('&"©\' <i>text</i> <', element.firstChild.data);
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&"©\' <i>text</i> <', getShadowTextContent(shadow));
+				}
+			}
+			function testSetText_Entities() {
+				var element	= ample.getElementById("test92");
+				assertEquals('&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;', element.firstChild.data);
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;', getShadowTextContent(shadow));
+				}
+			}
+			function testModifyAppendSetText_Entities() {
+				var element	= ample.getElementById("test93").firstChild;
+				assertEquals('&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;', element.firstChild.data);
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;', getShadowTextContent(shadow));
+				}
+			}
+			function testAppendModifySetText_Entities() {
+				var element	= ample.getElementById("test94").firstChild;
+				assertEquals('&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;', element.firstChild.data);
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;', getShadowTextContent(shadow));
+				}
+			}
+			// 10. Setting/Getting &"©' <i>text</i> < text content
+			function testXmlText_Values() {
+				var element	= ample.getElementById("test101");
+				assertNull(element);	// Should be parse error
+			}
+			function testSetText_Values() {
+				var element	= ample.getElementById("test102");
+				assertEquals('&"©\' <i>text</i> <', element.firstChild.data);
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&"©\' <i>text</i> <', getShadowTextContent(shadow));
+				}
+			}
+			function testModifyAppendSetText_Values() {
+				var element	= ample.getElementById("test103").firstChild;
+				assertEquals('&"©\' <i>text</i> <', element.firstChild.data);
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&"©\' <i>text</i> <', getShadowTextContent(shadow));
+				}
+			}
+			function testAppendModifySetText_Values() {
+				var element	= ample.getElementById("test104").firstChild;
+				assertEquals('&"©\' <i>text</i> <', element.firstChild.data);
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&"©\' <i>text</i> <', getShadowTextContent(shadow));
+				}
+			}
+			// 11. Setting/Getting &amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt; CDATA content
+			function testXmlCDATA_Entities() {
+				var element	= ample.getElementById("test111");
+				assertEquals('&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;', element.firstChild.data);
+				if (shouldTestShadow) {
+					var shadow	= element.$getContainer();
+					assertEquals('&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;', getShadowTextContent(shadow));
+				}
+			}
+    	</script>
+
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page</p>
+
+		<h3>Attributes: &amp; value</h3>
+		<script type="application/ample+xml">
+			<test:test id="test11" test="&"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test12" onDOMNodeInsertedIntoDocument="doSetAttributeAmp(this)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test13" onDOMNodeInsertedIntoDocument="doModifyAppendSetAttribute(this, doSetAttributeAmp)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test14" onDOMNodeInsertedIntoDocument="doAppendModifySetAttribute(this, doSetAttributeAmp)"/>
+		</script>
+
+		<h3>Attributes: &amp;amp; entity</h3>
+		<script type="application/ample+xml">
+			<test:test id="test21" test="&amp;"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test22" onDOMNodeInsertedIntoDocument="doSetAttributeAmpEntity(this)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test23" onDOMNodeInsertedIntoDocument="doModifyAppendSetAttribute(this, doSetAttributeAmpEntity)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test24" onDOMNodeInsertedIntoDocument="doAppendModifySetAttribute(this, doSetAttributeAmpEntity)"/>
+		</script>
+
+		<h3>Attributes: " in single quotes</h3>
+		<script type="application/ample+xml">
+			<test:test id="test31" test='"value'/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test32" onDOMNodeInsertedIntoDocument="doSetAttributeDoubleQuotes(this)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test33" onDOMNodeInsertedIntoDocument="doModifyAppendSetAttribute(this, doSetAttributeDoubleQuotes)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test34" onDOMNodeInsertedIntoDocument="doAppendModifySetAttribute(this, doSetAttributeDoubleQuotes)"/>
+		</script>
+
+		<h3>Attributes: ' in double quotes</h3>
+		<script type="application/ample+xml">
+			<test:test id="test41" test="'value"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test42" onDOMNodeInsertedIntoDocument="doSetAttributeSingleQuotes(this)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test43" onDOMNodeInsertedIntoDocument="doModifyAppendSetAttribute(this, doSetAttributeSingleQuotes)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test44" onDOMNodeInsertedIntoDocument="doAppendModifySetAttribute(this, doSetAttributeSingleQuotes)"/>
+		</script>
+
+		<h3>Attributes: &amp;quot; and &amp;apos; in single quotes</h3>
+		<script type="application/ample+xml">
+			<test:test id="test51" test='&quot; &apos;'/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test52" onDOMNodeInsertedIntoDocument="doSetAttributeQuotationEntities(this)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test53" onDOMNodeInsertedIntoDocument="doModifyAppendSetAttribute(this, doSetAttributeQuotationEntities)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test54" onDOMNodeInsertedIntoDocument="doAppendModifySetAttribute(this, doSetAttributeQuotationEntities)"/>
+		</script>
+
+		<h3>Attributes: &amp;quot; and &amp;apos; in double quotes</h3>
+		<script type="application/ample+xml">
+			<test:test id="test61" test="&quot; &apos;"/>
+		</script>
+
+		<h3>Attributes: &amp;lt;value&amp;gt; &amp;copy;</h3>
+		<script type="application/ample+xml">
+			<test:test id="test71" test="&lt;value&gt; &copy;"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test72" onDOMNodeInsertedIntoDocument="doSetAttributeLtGtEntities(this)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test73" onDOMNodeInsertedIntoDocument="doModifyAppendSetAttribute(this, doSetAttributeLtGtEntities)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test74" onDOMNodeInsertedIntoDocument="doAppendModifySetAttribute(this, doSetAttributeLtGtEntities)"/>
+		</script>
+
+		<h3>Attributes: &lt;value&gt; &copy;</h3>
+		<script type="application/ample+xml">
+			<test:test id="test81" test="<value> ©"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test82" onDOMNodeInsertedIntoDocument="doSetAttributeLtGtValues(this)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test83" onDOMNodeInsertedIntoDocument="doModifyAppendSetAttribute(this, doSetAttributeLtGtValues)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test84" onDOMNodeInsertedIntoDocument="doAppendModifySetAttribute(this, doSetAttributeLtGtValues)"/>
+		</script>
+
+		<h3>Text: &amp;amp;&amp;quot;&amp;copy;&amp;apos; &amp;lt;i&amp;gt;text&amp;lt;/i&amp;gt; &amp;lt;</h3>
+		<script type="application/ample+xml">
+			<test:test id="test91">&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;</test:test>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test92" onDOMNodeInsertedIntoDocument="doSetContentEntities(this)"></test:test>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test93" onDOMNodeInsertedIntoDocument="doModifyAppendSetContent(this, doSetContentEntities)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test94" onDOMNodeInsertedIntoDocument="doAppendModifySetContent(this, doSetContentEntities)"/>
+		</script>
+
+		<h3>Text: &amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;</h3>
+		<script type="application/ample+xml">
+			<test:test id="test101">&"©' <i>text</i> <</test:test>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test102" onDOMNodeInsertedIntoDocument="doSetContentValues(this)"></test:test>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test103" onDOMNodeInsertedIntoDocument="doModifyAppendSetContent(this, doSetContentValues)"/>
+		</script>
+		<script type="application/ample+xml">
+			<test:test id="test104" onDOMNodeInsertedIntoDocument="doAppendModifySetContent(this, doSetContentValues)"/>
+		</script>
+
+		<h3>Text: CDATA Content</h3>
+		<script type="application/ample+xml">
+			<test:test id="test111"><![CDATA[&amp;&quot;&copy;&apos; &lt;i&gt;text&lt;/i&gt; &lt;]]></test:test>
+		</script>
+
+	</test:testody>
+</html>
