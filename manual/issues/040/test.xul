@@ -1,0 +1,66 @@
+			<xul:page xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+			xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:aml="http://www.amplesdk.com/ns/aml">
+				<xul:commandset>
+					<xul:command id="cmdToolItemClick" oncommand="toolItemClick( )"/>
+					<xul:command id="cmdToolItemMenuClick" oncommand="toolItemMenuClick( )"/>
+				</xul:commandset>
+						<xul:script type="text/javascript">
+			var sXulNS  = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
+			function toolItemClick( )
+			{
+				alert( "Tool Item Clicked" );
+			}
+
+			function toolItemMenuClick( )
+			{
+				alert( "Tool Item in menu Clicked" );
+			}
+		</xul:script>
+				<xul:toolbar id="folders">
+					<xul:toolbarbutton label="Test" command="cmdToolItemClick">
+						<xul:menupopup>
+							<xul:menuitem label="SubItem"/>
+						</xul:menupopup>
+					</xul:toolbarbutton>
+					<xul:toolbarbutton label="Test MenuButton 1" type="menu" command="cmdToolItemClick">
+						<xul:menupopup>
+							<xul:menuitem label="SubItem" command="cmdToolItemMenuClick"/>
+						</xul:menupopup>
+					</xul:toolbarbutton>
+					<xul:toolbarbutton label="Test MenuButton 2" type="menu-button" command="cmdToolItemClick">
+						<xul:menupopup>
+							<xul:menuitem label="SubItem" command="cmdToolItemMenuClick"/>
+						</xul:menupopup>
+					</xul:toolbarbutton>
+					<xul:toolbarbutton label="Test MenuButton checkbox" type="checkbox" command="cmdToolItemClick">
+						<xul:menupopup>
+							<xul:menuitem label="SubItem" command="cmdToolItemMenuClick"/>
+						</xul:menupopup>
+					</xul:toolbarbutton>
+					<xul:toolbarbutton label="Test MenuButton checkbox checked" type="checkbox" checked="true" command="cmdToolItemClick">
+						<xul:menupopup>
+							<xul:menuitem label="SubItem" command="cmdToolItemMenuClick"/>
+						</xul:menupopup>
+					</xul:toolbarbutton>
+					<xul:toolbarbutton label="Test MenuButton radio 1" type="radio" group="radio" command="cmdToolItemClick">
+						<xul:menupopup>
+							<xul:menuitem label="SubItem" command="cmdToolItemMenuClick"/>
+						</xul:menupopup>
+					</xul:toolbarbutton>
+					<xul:toolbarbutton label="Test MenuButton radio 2 checked" type="radio" group="radio" checked="true" command="cmdToolItemClick">
+						<xul:menupopup>
+							<xul:menuitem label="SubItem" command="cmdToolItemMenuClick"/>
+						</xul:menupopup>
+					</xul:toolbarbutton>
+				</xul:toolbar>
+				<xul:listbox flex="1">
+					<xul:listhead>
+						<xul:listheader width="30" label="" />
+						<xul:listheader width="500" label="Name" flex="1" />
+						<xul:listheader width="170" label="" />
+					</xul:listhead>
+					<xul:listbody id="list">
+					</xul:listbody>
+				</xul:listbox>
+			</xul:page>
