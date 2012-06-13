@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Test</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xul/xul.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<link type="text/ample+css" href="../../../../amplesdk/ample/languages/xul/themes/default/style.css" rel="stylesheet"/>
+		<style type="text/css">
+			html, body {
+				width:	100%;
+				height: 100%;
+				padding:0;
+				margin:	0;
+				overflow:hidden;
+			}
+			body {
+				border: 0;
+				font-family: Arial;
+				font-size: 13px;
+			}
+		</style>
+		<script type="text/javascript">
+			var sXulNS  = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+			var counter	= 0;
+			// Appending item to tree
+			// to		: treechildren element
+			// itemData : object { name, isFolder }
+			function appendItem( to, itemData )
+			{
+				var item = ample.createElementNS( sXulNS, "xul:treeitem" );
+				to.appendChild( item );
+
+				var row = ample.createElementNS( sXulNS, "xul:treerow" );
+				var cell = ample.createElementNS( sXulNS, "xul:treecell" );
+				cell.setAttribute( "label", itemData.name );
+				row.appendChild( cell );
+				cell = ample.createElementNS( sXulNS, "xul:treecell" );
+				cell.setAttribute( "label", "Download" );
+				row.appendChild( cell );
+				item.appendChild( row );
+				if ( itemData.isFolder )
+				{
+					item.setAttribute( "open", "false" );
+					item.setAttribute( "container", "true" );
+					item.onOpenStateChange = loadItems;
+				}
+				if ( itemData.isFolder )
+				{
+					var children = ample.createElementNS( sXulNS, "xul:treechildren" );
+					item.appendChild( children );
+				}
+			}
+
+			// loads 3 items into tree for first time
+			// or loads 3 items into clicked item for other times
+			function loadItems( mouseEvent )
+			{
+				var to = null;
+				if ( null == mouseEvent )
+				{
+					// destination is treechildren in treebody element for the first time
+					to = ample.getElementById( "tree" );
+					request = null;
+				}
+				else
+				{
+					// destination is treechildren of clicked item for other times
+					var target = mouseEvent.currentTarget.lastChild;
+					//alert( target.toXML() );
+					if ( target.childNodes.length == 0 )
+					{
+						to = mouseEvent.currentTarget.lastChild;
+					}
+				}
+				if ( null != to )
+				{
+					//console.log(to.tagName, to.$getContainer("gateway"))
+					// items are always same
+					var items = [
+								  { name: "File" + counter++, 	 isFolder: false }
+								, { name: "Folder" + counter++, isFolder: true  }
+								, { name: "Folder" + counter++, isFolder: true  }
+								, { name: "File" + counter++, 	 isFolder: false }
+								];
+					for ( i in items )
+						appendItem( to, items[ i ] );
+				}
+				// debug
+				var tree = ample.getElementById( "tree" );
+				// XML is correct
+				//console.log( tree.toXML() );
+			}
+
+			function load( )
+			{
+				loadItems( null );
+			}
+
+			ample.ready( load );
+		</script>
+	</head>
+	<body>
+		<script type="application/ample+xml">
+			<xul:page xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:aml="http://www.amplesdk.com/ns/aml">
+				<xul:tree flex="1" treelines="true">
+					<xul:treecols>
+						<xul:treecol label="Name" width="800" primary="true"/>
+						<xul:treecol label="" width="400" />
+					</xul:treecols>
+					<xul:treebody>
+						<xul:treechildren id="tree">
+						</xul:treechildren>
+					</xul:treebody>
+				</xul:tree>
+			</xul:page>
+		</script>
+	</body>
+</html>
