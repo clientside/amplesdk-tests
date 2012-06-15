@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Test</title>
+<script type="text/javascript"
+	src="../../../../amplesdk/ample/runtime.js"></script>
+<script type="text/javascript"
+	src="../../../../amplesdk/ample/languages/xul/xul.js"></script>
+<script type="text/javascript"
+	src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+<link type="text/ample+css"
+	href="../../../../amplesdk/ample/languages/xul/themes/default/style.css"
+	rel="stylesheet" />
+<style type="text/css">
+html,body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+body {
+	border: 0;
+	font-family: Arial;
+	font-size: 13px;
+}
+</style>
+<script type="text/javascript">
+	function loadItems(treeItem) {
+	    // loading treechildren from xml file
+	    //ample.query("#id536823").empty();
+	    ample.get("id536823.xml", null, function(o) {
+	    	ample.query("#id536823").append(ample.importNode(o.documentElement, true));
+	    });
+	    //ample.query("#id536823").load("id536823.xml");
+	    //alert(treeItem.parentNode.parentNode.toXML());
+    }
+</script>
+</head>
+<body>
+	<script type="application/ample+xml"> <xul:page
+		xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		xmlns:xi="http://www.w3.org/2001/XInclude"
+		xmlns:aml="http://www.amplesdk.com/ns/aml">
+		<xul:tree flex="1" treelines="true">
+			<xul:treecols>
+				<xul:treecol label="Name" width="800" primary="true" />
+				<xul:treecol label="" width="400" />
+			</xul:treecols>
+			<xul:treebody>
+				<xul:treechildren>
+					<xul:treeitem onclick="loadItems(this)" id="id536823"
+						container="true" open="false">
+						<xul:treerow>
+							<xul:treecell label="Item" />
+							<xul:treecell label="Item" />
+						</xul:treerow>
+					</xul:treeitem>
+				</xul:treechildren>
+			</xul:treebody>
+		</xul:tree>
+	</xul:page> </script>
+</body>
+</html>

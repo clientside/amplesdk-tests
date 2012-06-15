@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<xul:treechildren xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<xul:treeitem>
+		<xul:treerow>
+			<xul:treecell label="Sub item" />
+			<xul:treecell label="Sub item" />
+		</xul:treerow>
+	</xul:treeitem>
+</xul:treechildren>
