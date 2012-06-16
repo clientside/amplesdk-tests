@@ -29,7 +29,7 @@
                ample.ready(function() {
                    setUpPageStatus = 'Loading';
                    // Load overlay
-                   ample.documentElement.ownerDocument.loadOverlay('append-id-insertbefore.xul', function() { setUpPageStatus = 'complete';  console.log(ample.documentElement.toXML()); }); 
+                   ample.documentElement.ownerDocument.loadOverlay('append-id-insertbefore.xul', function() { setUpPageStatus = 'complete';  if (typeof(console) != "undefined") console.log(ample.documentElement.toXML()); }); 
                });
         </script>
 		<script type="application/ample+xml">            
