@@ -7,4 +7,10 @@
 			<xul:treecell label="Sub item" />
 		</xul:treerow>
 	</xul:treeitem>
+	<xul:treeitem>
+		<xul:treerow>
+			<xul:treecell label="Sub item" />
+			<xul:treecell label="Sub item" />
+		</xul:treerow>
+	</xul:treeitem>
 </xul:treechildren>
