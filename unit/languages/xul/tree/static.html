@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JsUnit testing page</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../../jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+			JsUnitClient.include("languages/xul/xul.js");
+			JsUnitClient.include("languages/xul/themes/default/style.css");
+		</script>
+
+		<!-- Tests -->
+		<script type="text/javascript">
+			// tree.body
+			function testTree_body() {
+				var oTree	= ample.getElementById("tree"),
+					oBody	= ample.getElementById("body");
+				assertEquals(oBody, oTree.body);
+			}
+			// tree.head
+			function testTree_cols() {
+				var oTree	= ample.getElementById("tree"),
+					oCols	= ample.getElementById("cols");
+				assertEquals(oCols, oTree.head);
+			}
+			// treecols.items
+			function testTreeCols_items() {
+				var oCols	= ample.getElementById("cols"),
+					oCol0	= ample.getElementById("col0"),
+					oCol1	= ample.getElementById("col1");
+				assertEquals(2, oCols.items.length);
+				assertEquals(oCol0, oCols.items[0]);
+				assertEquals(oCol1, oCols.items[1]);
+			}
+			// treebody.children
+			function testTreeBody_children() {
+				var oBody	= ample.getElementById("body"),
+					oChildren	= ample.getElementById("children");
+				assertEquals(oChildren, oBody.children);
+			}
+			// treechildren.items
+			function testTreeChildren_items() {
+				var oChildren	= ample.getElementById("children"),
+					oItem0	= ample.getElementById("item0"),
+					oItem1	= ample.getElementById("item1"),
+					oItem2	= ample.getElementById("item2"),
+					oItem3	= ample.getElementById("item3"),
+					oItem4	= ample.getElementById("item4");
+				assertEquals(5, oChildren.items.length);
+				assertEquals(oItem0, oChildren.items[0]);
+				assertEquals(oItem1, oChildren.items[1]);
+				assertEquals(oItem2, oChildren.items[2]);
+				assertEquals(oItem3, oChildren.items[3]);
+				assertEquals(oItem4, oChildren.items[4]);
+			}
+				// treeitem'0 properties
+				function testTreeItem0_properties() {
+					var oItem0	= ample.getElementById("item0"),
+						oRow0		= ample.getElementById("row0"),
+						oChildren0	= ample.getElementById("children0");
+					assertEquals(oRow0, oItem0.row);
+					assertEquals(oChildren0, oItem0.children);
+				}
+				// treerow'0 properties
+				function testTreeRow0_properties() {
+					var oRow0	= ample.getElementById("row0"),
+						oCell00	= ample.getElementById("cell00"),
+						oCell01	= ample.getElementById("cell01");
+					assertEquals(2, oRow0.cells.length);
+					assertEquals(oCell00, oRow0.cells[0]);
+					assertEquals(oCell01, oRow0.cells[1]);
+				}
+				// treechildren'0 properties
+				function testTreeChildren0_items() {
+					var oChildren0	= ample.getElementById("children0"),
+						oItem00	= ample.getElementById("item00"),
+						oItem01	= ample.getElementById("item01");
+					assertEquals(2, oChildren0.items.length);
+					assertEquals(oItem00, oChildren0.items[0]);
+					assertEquals(oItem01, oChildren0.items[1]);
+				}
+					// treeitem'00 properties
+					function testTreeItem00_properties() {
+						var oItem00	= ample.getElementById("item00"),
+							oRow00		= ample.getElementById("row00"),
+							oChildren00	= ample.getElementById("children00");
+						assertEquals(oRow00, oItem00.row);
+						assertEquals(oChildren00, oItem00.children);
+					}
+					// treerow'00 properties
+					function testTreeRow00_properties() {
+						var oRow00	= ample.getElementById("row00"),
+							oCell000	= ample.getElementById("cell000"),
+							oCell001	= ample.getElementById("cell001");
+						assertEquals(2, oRow00.cells.length);
+						assertEquals(oCell000, oRow00.cells[0]);
+						assertEquals(oCell001, oRow00.cells[1]);
+					}
+					// treechildren'00 properties
+					function testTreeChildren00_items() {
+						var oChildren00	= ample.getElementById("children00"),
+							oItem000	= ample.getElementById("item000"),
+							oItem001	= ample.getElementById("item001");
+						assertEquals(2, oChildren00.items.length);
+						assertEquals(oItem000, oChildren00.items[0]);
+						assertEquals(oItem001, oChildren00.items[1]);
+					}
+						// treeitem'000 properties
+						function testTreeItem000_properties() {
+							var oItem000	= ample.getElementById("item000"),
+								oRow000		= ample.getElementById("row000");
+							assertEquals(oRow000, oItem000.row);
+							assertNull(oItem000.children);
+						}
+						// treerow'000 properties
+						function testTreeRow000_properties() {
+							var oRow000	= ample.getElementById("row000"),
+								oCell0000	= ample.getElementById("cell0000"),
+								oCell0001	= ample.getElementById("cell0001");
+							assertEquals(2, oRow000.cells.length);
+							assertEquals(oCell0000, oRow000.cells[0]);
+							assertEquals(oCell0001, oRow000.cells[1]);
+						}
+						// treeitem'001 properties
+						function testTreeItem001_properties() {
+							var oItem001	= ample.getElementById("item001"),
+								oRow001		= ample.getElementById("row001");
+							assertEquals(oRow001, oItem001.row);
+							assertNull(oItem001.children);
+						}
+						// treerow'001 properties
+						function testTreeRow001_properties() {
+							var oRow001	= ample.getElementById("row001"),
+								oCell0010	= ample.getElementById("cell0010"),
+								oCell0011	= ample.getElementById("cell0011");
+							assertEquals(2, oRow001.cells.length);
+							assertEquals(oCell0010, oRow001.cells[0]);
+							assertEquals(oCell0011, oRow001.cells[1]);
+						}
+					// treeitem'01 properties
+					function testTreeItem01_properties() {
+						var oItem01	= ample.getElementById("item01"),
+							oRow01		= ample.getElementById("row01");
+						assertEquals(oRow01, oItem01.row);
+						assertNull(oItem01.children);
+					}
+					// treerow'01 properties
+					function testTreeRow01_properties() {
+						var oRow01	= ample.getElementById("row01"),
+							oCell010	= ample.getElementById("cell010"),
+							oCell011	= ample.getElementById("cell011");
+						assertEquals(2, oRow01.cells.length);
+						assertEquals(oCell010, oRow01.cells[0]);
+						assertEquals(oCell011, oRow01.cells[1]);
+					}
+				// treeitem'1 properties
+				function testTreeItem1_properties() {
+					var oItem1	= ample.getElementById("item1"),
+						oRow1		= ample.getElementById("row1"),
+						oChildren1	= ample.getElementById("children1");
+					assertEquals(oRow1, oItem1.row);
+					assertEquals(oChildren1, oItem1.children);
+				}
+				// treerow'1 properties
+				function testTreeRow1_properties() {
+					var oRow1	= ample.getElementById("row1"),
+						oCell10	= ample.getElementById("cell10"),
+						oCell11	= ample.getElementById("cell11");
+					assertEquals(2, oRow1.cells.length);
+					assertEquals(oCell10, oRow1.cells[0]);
+					assertEquals(oCell11, oRow1.cells[1]);
+				}
+				// treechildren'1 properties
+				function testTreeChildren1_items() {
+					var oChildren1	= ample.getElementById("children1");
+					assertEquals(0, oChildren1.items.length);
+				}
+				// treeitem'2 properties
+				function testTreeItem2_properties() {
+					var oItem2	= ample.getElementById("item2"),
+						oChildren2	= ample.getElementById("children2");
+					assertEquals(oChildren2, oItem2.children);
+					assertNull(oItem2.row);
+				}
+				// treechildren'2 properties
+				function testTreeChildren2_items() {
+					var oChildren2	= ample.getElementById("children2");
+					assertEquals(0, oChildren2.items.length);
+				}
+				// treeitem'3 properties
+				function testTreeItem3_properties() {
+					var oItem3	= ample.getElementById("item3"),
+						oRow3	= ample.getElementById("row3");
+					assertEquals(oRow3, oItem3.row);
+					assertNull(oItem3.children);
+				}
+				// treerow'3 properties
+				function testTreeRow3_properties() {
+					var oRow3	= ample.getElementById("row3");
+					assertEquals(0, oRow3.cells.length);
+				}
+				// treeitem'4 properties
+				function testTreeItem4_properties() {
+					var oItem4	= ample.getElementById("item4");
+					assertNull(oItem4.row);
+					assertNull(oItem4.children);
+				}
+			// tree.items
+			function testTree_items() {
+				var oTree	= ample.getElementById("tree"),
+					oItem0	= ample.getElementById("item0"),
+						oItem00	= ample.getElementById("item00"),
+							oItem000	= ample.getElementById("item000"),
+							oItem001	= ample.getElementById("item001"),
+						oItem01	= ample.getElementById("item01"),
+					oItem1	= ample.getElementById("item1"),
+					oItem2	= ample.getElementById("item2"),
+					oItem3	= ample.getElementById("item3"),
+					oItem4	= ample.getElementById("item4");
+				//
+				assertEquals(9, oTree.items.length);
+				//
+				assertEquals(oItem0, oTree.items[0]);
+					assertEquals(oItem00, oTree.items[1]);
+						assertEquals(oItem000, oTree.items[2]);
+						assertEquals(oItem001, oTree.items[3]);
+					assertEquals(oItem01, oTree.items[4]);
+				assertEquals(oItem1, oTree.items[5]);
+				assertEquals(oItem2, oTree.items[6]);
+				assertEquals(oItem3, oTree.items[7]);
+				assertEquals(oItem4, oTree.items[8]);
+			}
+		</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page - XUL Trees - static</p>
+
+		<script type="application/ample+xml">
+		<xul:page xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+			<xul:tree id="tree">
+				<xul:treecols id="cols">
+					<xul:treecol id="col0" label="Primary" primary="true" width="200" />
+					<xul:treecol id="col1" label="Secondary" width="200"/>
+				</xul:treecols>
+				<xul:treebody id="body">
+					<xul:treechildren id="children">
+						<xul:treeitem id="item0" container="true" open="true">
+							<xul:treerow id="row0">
+								<xul:treecell id="cell00" label="Cell 00" />
+								<xul:treecell id="cell01" label="Cell 01" />
+							</xul:treerow>
+							<xul:treechildren id="children0">
+								<xul:treeitem id="item00" container="true">
+									<xul:treerow id="row00">
+										<xul:treecell id="cell000" label="Cell 000" />
+										<xul:treecell id="cell001" label="Cell 001" />
+									</xul:treerow>
+									<xul:treechildren id="children00">
+										<xul:treeitem id="item000">
+											<xul:treerow id="row000">
+												<xul:treecell id="cell0000" label="Cell 0000" />
+												<xul:treecell id="cell0001" label="Cell 0001" />
+											</xul:treerow>
+										</xul:treeitem>
+										<xul:treeitem id="item001">
+											<xul:treerow id="row001">
+												<xul:treecell id="cell0010" label="Cell 0010" />
+												<xul:treecell id="cell0011" label="Cell 0011" />
+											</xul:treerow>
+										</xul:treeitem>
+									</xul:treechildren>
+								</xul:treeitem>
+								<xul:treeitem id="item01">
+									<xul:treerow id="row01">
+										<xul:treecell id="cell010" label="Cell 010" />
+										<xul:treecell id="cell011" label="Cell 011" />
+									</xul:treerow>
+								</xul:treeitem>
+							</xul:treechildren>
+						</xul:treeitem>
+						<xul:treeitem id="item1">
+							<xul:treerow id="row1">
+								<xul:treecell id="cell10" label="Cell 10" />
+								<xul:treecell id="cell11" label="Cell 11" />
+							</xul:treerow>
+							<xul:treechildren id="children1" />
+						</xul:treeitem>
+						<xul:treeitem id="item2">
+							<xul:treechildren id="children2" />
+						</xul:treeitem>
+						<xul:treeitem id="item3">
+							<xul:treerow id="row3" />
+						</xul:treeitem>
+						<xul:treeitem id="item4" />
+					</xul:treechildren>
+				</xul:treebody>
+			</xul:tree>
+		</xul:page>
+		</script>
+	</body>
+</html>
