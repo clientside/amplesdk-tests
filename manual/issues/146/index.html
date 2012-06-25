@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>#146</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<link type="text/ample+css" href="../../../../amplesdk/ample/languages/xhtml/themes/default/style.css" rel="stylesheet"/>
+		<style type="text/css">
+			html, body {
+				width:	100%;
+				height: 100%;
+				padding:0;
+				margin:	0;
+				overflow:hidden;
+			}
+			body {
+				border: 0;
+				font-family: Arial;
+				font-size: 13px;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="application/ample+xml">
+			<button onclick="var e = ample.query('#test');
+				e.attr('style', 'display:none');
+				e.show('slow');
+				setTimeout(function(){e.attr('style', 'display:none');}, 1000)">click</button>
+			<div id="test" xmlns="http://www.w3.org/1999/xhtml" style="background-color:lightgreen">XXXXXXXXXXXXX</div>
+		</script>
+	</body>
+</html>
