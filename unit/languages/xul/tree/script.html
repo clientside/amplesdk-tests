@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JsUnit testing page</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../../jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+			JsUnitClient.include("languages/xul/xul.js");
+			JsUnitClient.include("languages/xul/themes/default/style.css");
+		</script>
+
+		<!-- Prepare -->
+		<script type="text/javascript">
+			ample.ready(function() {
+				var xul	= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+				var oPage	= ample.getElementById("page");
+
+				// Create tree
+				var oTree	= ample.createElementNS(xul, "xul:tree");
+				oTree.setAttribute("id", "tree");
+				oPage.appendChild(oTree);
+
+				// Create treecols
+				var oCols		= ample.createElementNS(xul, "xul:treecols");
+				oCols.setAttribute("id", "cols");
+				oTree.appendChild(oCols);
+
+				// Create treebody
+				var oBody	= ample.createElementNS(xul, "xul:treebody");
+				oBody.setAttribute("id", "body");
+				oTree.appendChild(oBody);
+
+					// Create treecol
+					var oCol0		= ample.createElementNS(xul, "xul:treecol");
+					oCol0.setAttribute("id", "col0");
+					oCols.appendChild(oCol0);
+					var oCol1		= ample.createElementNS(xul, "xul:treecol");
+					oCol1.setAttribute("id", "col1");
+					oCols.appendChild(oCol1);
+
+				// Create treechildren
+				var oChildren	= ample.createElementNS(xul, "xul:treechildren");
+				oChildren.setAttribute("id", "children");
+				oBody.appendChild(oChildren);
+
+				// Create treeitem'0
+				var oItem0	= ample.createElementNS(xul, "xul:treeitem");
+				oItem0.setAttribute("id", "item0");
+				oItem0.setAttribute("container", "true");
+				oItem0.setAttribute("open", "true");
+				oChildren.appendChild(oItem0);
+
+				// Create row'0
+				var oRow0	= ample.createElementNS(xul, "xul:treerow");
+				oRow0.setAttribute("id", "row0");
+				oItem0.appendChild(oRow0);
+
+				// Create cell'00 and cell'01
+				var oCell00	= ample.createElementNS(xul, "xul:treecell");
+				oCell00.setAttribute("id", "cell00");
+				oRow0.appendChild(oCell00);
+				var oCell01	= ample.createElementNS(xul, "xul:treecell");
+				oCell01.setAttribute("id", "cell01");
+				oRow0.appendChild(oCell01);
+
+				// Create treechildren'0
+				var oChildren0	= ample.createElementNS(xul, "xul:treechildren");
+				oChildren0.setAttribute("id", "children0");
+				oItem0.appendChild(oChildren0);
+
+					// Create treeitem'00
+					var oItem00	= ample.createElementNS(xul, "xul:treeitem");
+					oItem00.setAttribute("id", "item00");
+					oItem00.setAttribute("container", "true");
+					oChildren0.appendChild(oItem00);
+
+					// Create row'00
+					var oRow00	= ample.createElementNS(xul, "xul:treerow");
+					oRow00.setAttribute("id", "row00");
+					oItem00.appendChild(oRow00);
+
+					// Create cell'000 and cell'001
+					var oCell000	= ample.createElementNS(xul, "xul:treecell");
+					oCell000.setAttribute("id", "cell000");
+					oRow00.appendChild(oCell000);
+					var oCell001	= ample.createElementNS(xul, "xul:treecell");
+					oCell001.setAttribute("id", "cell001");
+					oRow00.appendChild(oCell001);
+
+					// Create treechildren'00
+					var oChildren00	= ample.createElementNS(xul, "xul:treechildren");
+					oChildren00.setAttribute("id", "children00");
+					oItem00.appendChild(oChildren00);
+
+
+						// Create treeitem'000
+						var oItem000	= ample.createElementNS(xul, "xul:treeitem");
+						oItem000.setAttribute("id", "item000");
+						oChildren00.appendChild(oItem000);
+
+						// Create row'000
+						var oRow000	= ample.createElementNS(xul, "xul:treerow");
+						oRow000.setAttribute("id", "row000");
+						oItem000.appendChild(oRow000);
+
+						// Create cell'0000 and cell'0001
+						var oCell0000	= ample.createElementNS(xul, "xul:treecell");
+						oCell0000.setAttribute("id", "cell0000");
+						oRow000.appendChild(oCell0000);
+						var oCell0001	= ample.createElementNS(xul, "xul:treecell");
+						oCell0001.setAttribute("id", "cell0001");
+						oRow000.appendChild(oCell0001);
+
+						// Create treeitem'001
+						var oItem001	= ample.createElementNS(xul, "xul:treeitem");
+						oItem001.setAttribute("id", "item001");
+						oChildren00.appendChild(oItem001);
+
+						// Create row'001
+						var oRow001	= ample.createElementNS(xul, "xul:treerow");
+						oRow001.setAttribute("id", "row001");
+						oItem001.appendChild(oRow001);
+
+						// Create cell'0010 and cell'0011
+						var oCell0010	= ample.createElementNS(xul, "xul:treecell");
+						oCell0010.setAttribute("id", "cell0010");
+						oRow001.appendChild(oCell0010);
+						var oCell0011	= ample.createElementNS(xul, "xul:treecell");
+						oCell0011.setAttribute("id", "cell0011");
+						oRow001.appendChild(oCell0011);
+
+					// Create treeitem'01
+					var oItem01	= ample.createElementNS(xul, "xul:treeitem");
+					oItem01.setAttribute("id", "item01");
+					oChildren0.appendChild(oItem01);
+
+					// Create row'01
+					var oRow01	= ample.createElementNS(xul, "xul:treerow");
+					oRow01.setAttribute("id", "row01");
+					oItem01.appendChild(oRow01);
+
+					// Create cell'010 and cell'011
+					var oCell010	= ample.createElementNS(xul, "xul:treecell");
+					oCell010.setAttribute("id", "cell010");
+					oRow01.appendChild(oCell010);
+					var oCell011	= ample.createElementNS(xul, "xul:treecell");
+					oCell011.setAttribute("id", "cell011");
+					oRow01.appendChild(oCell011);
+
+				// Create treeitem'1
+				var oItem1	= ample.createElementNS(xul, "xul:treeitem");
+				oItem1.setAttribute("id", "item1");
+				oChildren.appendChild(oItem1);
+
+				// Create row'1
+				var oRow1	= ample.createElementNS(xul, "xul:treerow");
+				oRow1.setAttribute("id", "row1");
+				oItem1.appendChild(oRow1);
+
+				// Create cell'10 and cell'11
+				var oCell10	= ample.createElementNS(xul, "xul:treecell");
+				oCell10.setAttribute("id", "cell10");
+				oRow1.appendChild(oCell10);
+				var oCell11	= ample.createElementNS(xul, "xul:treecell");
+				oCell11.setAttribute("id", "cell11");
+				oRow1.appendChild(oCell11);
+
+				// Create treechildren'1
+				var oChildren1	= ample.createElementNS(xul, "xul:treechildren");
+				oChildren1.setAttribute("id", "children1");
+				oItem1.appendChild(oChildren1);
+
+				// Create treeitem'2
+				var oItem2	= ample.createElementNS(xul, "xul:treeitem");
+				oItem2.setAttribute("id", "item2");
+				oChildren.appendChild(oItem2);
+
+				// Create treechildren'2
+				var oChildren2	= ample.createElementNS(xul, "xul:treechildren");
+				oChildren2.setAttribute("id", "children2");
+				oItem2.appendChild(oChildren2);
+
+				// Create treeitem'3
+				var oItem3	= ample.createElementNS(xul, "xul:treeitem");
+				oItem3.setAttribute("id", "item3");
+				oChildren.appendChild(oItem3);
+
+				// Create row'3
+				var oRow3	= ample.createElementNS(xul, "xul:treerow");
+				oRow3.setAttribute("id", "row3");
+				oItem3.appendChild(oRow3);
+
+				// Create treeitem'4
+				var oItem4	= ample.createElementNS(xul, "xul:treeitem");
+				oItem4.setAttribute("id", "item4");
+				oChildren.appendChild(oItem4);
+			});
+		</script>
+
+		<!-- Tests -->
+		<script type="text/javascript">
+			// tree.head
+			function testTree_cols() {
+				var oTree	= ample.getElementById("tree"),
+					oCols	= ample.getElementById("cols");
+				assertNotNull(oTree.head);
+				assertEquals(oCols, oTree.head);
+			}
+			// tree.body
+			function testTree_body() {
+				var oTree	= ample.getElementById("tree"),
+					oBody	= ample.getElementById("body");
+				assertEquals(oBody, oTree.body);
+			}
+			// treecols.items
+			function testTreeCols_items() {
+				var oCols	= ample.getElementById("cols"),
+					oCol0	= ample.getElementById("col0"),
+					oCol1	= ample.getElementById("col1");
+				assertEquals(2, oCols.items.length);
+				assertEquals(oCol0, oCols.items[0]);
+				assertEquals(oCol1, oCols.items[1]);
+			}
+			// treebody.children
+			function testTreeBody_children() {
+				var oBody	= ample.getElementById("body"),
+					oChildren	= ample.getElementById("children");
+				assertEquals(oChildren, oBody.children);
+			}
+			// treechildren.items
+			function testTreeChildren_items() {
+				var oChildren	= ample.getElementById("children"),
+					oItem0	= ample.getElementById("item0"),
+					oItem1	= ample.getElementById("item1"),
+					oItem2	= ample.getElementById("item2"),
+					oItem3	= ample.getElementById("item3"),
+					oItem4	= ample.getElementById("item4");
+				assertEquals(5, oChildren.items.length);
+				assertEquals(oItem0, oChildren.items[0]);
+				assertEquals(oItem1, oChildren.items[1]);
+				assertEquals(oItem2, oChildren.items[2]);
+				assertEquals(oItem3, oChildren.items[3]);
+				assertEquals(oItem4, oChildren.items[4]);
+			}
+				// treeitem'0 properties
+				function testTreeItem0_properties() {
+					var oItem0	= ample.getElementById("item0"),
+						oRow0		= ample.getElementById("row0"),
+						oChildren0	= ample.getElementById("children0");
+					assertEquals(oRow0, oItem0.row);
+					assertEquals(oChildren0, oItem0.children);
+				}
+				// treerow'0 properties
+				function testTreeRow0_properties() {
+					var oRow0	= ample.getElementById("row0"),
+						oCell00	= ample.getElementById("cell00"),
+						oCell01	= ample.getElementById("cell01");
+					assertEquals(2, oRow0.cells.length);
+					assertEquals(oCell00, oRow0.cells[0]);
+					assertEquals(oCell01, oRow0.cells[1]);
+				}
+				// treechildren'0 properties
+				function testTreeChildren0_items() {
+					var oChildren0	= ample.getElementById("children0"),
+						oItem00	= ample.getElementById("item00"),
+						oItem01	= ample.getElementById("item01");
+					assertEquals(2, oChildren0.items.length);
+					assertEquals(oItem00, oChildren0.items[0]);
+					assertEquals(oItem01, oChildren0.items[1]);
+				}
+					// treeitem'00 properties
+					function testTreeItem00_properties() {
+						var oItem00	= ample.getElementById("item00"),
+							oRow00		= ample.getElementById("row00"),
+							oChildren00	= ample.getElementById("children00");
+						assertEquals(oRow00, oItem00.row);
+						assertEquals(oChildren00, oItem00.children);
+					}
+					// treerow'00 properties
+					function testTreeRow00_properties() {
+						var oRow00	= ample.getElementById("row00"),
+							oCell000	= ample.getElementById("cell000"),
+							oCell001	= ample.getElementById("cell001");
+						assertEquals(2, oRow00.cells.length);
+						assertEquals(oCell000, oRow00.cells[0]);
+						assertEquals(oCell001, oRow00.cells[1]);
+					}
+					// treechildren'00 properties
+					function testTreeChildren00_items() {
+						var oChildren00	= ample.getElementById("children00"),
+							oItem000	= ample.getElementById("item000"),
+							oItem001	= ample.getElementById("item001");
+						assertEquals(2, oChildren00.items.length);
+						assertEquals(oItem000, oChildren00.items[0]);
+						assertEquals(oItem001, oChildren00.items[1]);
+					}
+						// treeitem'000 properties
+						function testTreeItem000_properties() {
+							var oItem000	= ample.getElementById("item000"),
+								oRow000		= ample.getElementById("row000");
+							assertEquals(oRow000, oItem000.row);
+							assertNull(oItem000.children);
+						}
+						// treerow'000 properties
+						function testTreeRow000_properties() {
+							var oRow000	= ample.getElementById("row000"),
+								oCell0000	= ample.getElementById("cell0000"),
+								oCell0001	= ample.getElementById("cell0001");
+							assertEquals(2, oRow000.cells.length);
+							assertEquals(oCell0000, oRow000.cells[0]);
+							assertEquals(oCell0001, oRow000.cells[1]);
+						}
+						// treeitem'001 properties
+						function testTreeItem001_properties() {
+							var oItem001	= ample.getElementById("item001"),
+								oRow001		= ample.getElementById("row001");
+							assertEquals(oRow001, oItem001.row);
+							assertNull(oItem001.children);
+						}
+						// treerow'001 properties
+						function testTreeRow001_properties() {
+							var oRow001	= ample.getElementById("row001"),
+								oCell0010	= ample.getElementById("cell0010"),
+								oCell0011	= ample.getElementById("cell0011");
+							assertEquals(2, oRow001.cells.length);
+							assertEquals(oCell0010, oRow001.cells[0]);
+							assertEquals(oCell0011, oRow001.cells[1]);
+						}
+					// treeitem'01 properties
+					function testTreeItem01_properties() {
+						var oItem01	= ample.getElementById("item01"),
+							oRow01		= ample.getElementById("row01");
+						assertEquals(oRow01, oItem01.row);
+						assertNull(oItem01.children);
+					}
+					// treerow'01 properties
+					function testTreeRow01_properties() {
+						var oRow01	= ample.getElementById("row01"),
+							oCell010	= ample.getElementById("cell010"),
+							oCell011	= ample.getElementById("cell011");
+						assertEquals(2, oRow01.cells.length);
+						assertEquals(oCell010, oRow01.cells[0]);
+						assertEquals(oCell011, oRow01.cells[1]);
+					}
+				// treeitem'1 properties
+				function testTreeItem1_properties() {
+					var oItem1	= ample.getElementById("item1"),
+						oRow1		= ample.getElementById("row1"),
+						oChildren1	= ample.getElementById("children1");
+					assertEquals(oRow1, oItem1.row);
+					assertEquals(oChildren1, oItem1.children);
+				}
+				// treerow'1 properties
+				function testTreeRow1_properties() {
+					var oRow1	= ample.getElementById("row1"),
+						oCell10	= ample.getElementById("cell10"),
+						oCell11	= ample.getElementById("cell11");
+					assertEquals(2, oRow1.cells.length);
+					assertEquals(oCell10, oRow1.cells[0]);
+					assertEquals(oCell11, oRow1.cells[1]);
+				}
+				// treechildren'1 properties
+				function testTreeChildren1_items() {
+					var oChildren1	= ample.getElementById("children1");
+					assertEquals(0, oChildren1.items.length);
+				}
+				// treeitem'2 properties
+				function testTreeItem2_properties() {
+					var oItem2	= ample.getElementById("item2"),
+						oChildren2	= ample.getElementById("children2");
+					assertEquals(oChildren2, oItem2.children);
+					assertNull(oItem2.row);
+				}
+				// treechildren'2 properties
+				function testTreeChildren2_items() {
+					var oChildren2	= ample.getElementById("children2");
+					assertEquals(0, oChildren2.items.length);
+				}
+				// treeitem'3 properties
+				function testTreeItem3_properties() {
+					var oItem3	= ample.getElementById("item3"),
+						oRow3	= ample.getElementById("row3");
+					assertEquals(oRow3, oItem3.row);
+					assertNull(oItem3.children);
+				}
+				// treerow'3 properties
+				function testTreeRow3_properties() {
+					var oRow3	= ample.getElementById("row3");
+					assertEquals(0, oRow3.cells.length);
+				}
+				// treeitem'4 properties
+				function testTreeItem4_properties() {
+					var oItem4	= ample.getElementById("item4");
+					assertNull(oItem4.row);
+					assertNull(oItem4.children);
+				}
+			// tree.items
+			function testTree_items() {
+				var oTree	= ample.getElementById("tree"),
+					oItem0	= ample.getElementById("item0"),
+						oItem00	= ample.getElementById("item00"),
+							oItem000	= ample.getElementById("item000"),
+							oItem001	= ample.getElementById("item001"),
+						oItem01	= ample.getElementById("item01"),
+					oItem1	= ample.getElementById("item1"),
+					oItem2	= ample.getElementById("item2"),
+					oItem3	= ample.getElementById("item3"),
+					oItem4	= ample.getElementById("item4");
+				//
+				assertEquals(9, oTree.items.length);
+				//
+				assertEquals(oItem0, oTree.items[0]);
+					assertEquals(oItem00, oTree.items[1]);
+						assertEquals(oItem000, oTree.items[2]);
+						assertEquals(oItem001, oTree.items[3]);
+					assertEquals(oItem01, oTree.items[4]);
+				assertEquals(oItem1, oTree.items[5]);
+				assertEquals(oItem2, oTree.items[6]);
+				assertEquals(oItem3, oTree.items[7]);
+				assertEquals(oItem4, oTree.items[8]);
+			}
+		</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page - XUL Trees - dynamic (in order of static)</p>
+
+		<script type="application/ample+xml">
+		<xul:page id="page" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"></xul:page>
+		</script>
+
+	</body>
+</html>
