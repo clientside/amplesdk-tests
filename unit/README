@@ -10,10 +10,10 @@
        support relative paths in urls.
 
  Running:
- - Access tests/jsunit/testRunner.html?testpage=../unit/suite.html&autorun=true
+ - Access /unit.js/testRunner.html?testpage=../amplesdk-tests/unit/suite.html&autorun=true
 
  Adjusting:
  - By default unit tests will run against raw source version.
    If you want to run tests against build version, create build first, then
    point directory in jsUnitClient.js file to the relative build folder location:
-   var sBaseUriAmple	= '../../build/work/ample-0.9.0/ample/';
+   var sBaseUriInculde	= '../../build/work/ample-0.9.0/ample/';

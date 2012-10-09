@@ -3,14 +3,15 @@
  * to enable inclusion of required resources for tests to run.
  *
  * By default the driver will link to the raw source of Ample SDK framework,
- * In order to use build libraries point sBaseUriAmple to its ample folder
+ * In order to use build libraries point sBaseUriLibrary to its ample folder
  *
  */
 
 var JsUnitClient	= (function() {
 
-	var sBaseUriAmple	= '../../amplesdk/ample/';	// Source version
-	//var sBaseUriAmple	= '../../build/work/ample-0.9.0/ample/';
+	var sBaseUriUnitJs	= '../../../unit.js/';
+	var sBaseUriLibrary	= '../../amplesdk/ample/';	// Source version
+	//var sBaseUriLibrary	= '../../build/work/ample-0.9.0/ample/';
 
 	function fGetUriComponents(sUri) {
 		var aResult	= sUri.match(/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?/);
@@ -84,7 +85,7 @@ var JsUnitClient	= (function() {
 	};
 
 	// JsUnit resources
-	fWriteScript('../jsunit/app/jsUnitCore.js');
+	fWriteScript(sBaseUriUnitJs + 'app/jsUnitCore.js');
 
 	// Public API
 	return {
@@ -94,11 +95,11 @@ var JsUnitClient	= (function() {
 		"include":	function(sResource) {
 			switch (sResource.match(/\.([a-z]+)$/)[1]) {
 				case "js":
-					fWriteScript(sBaseUriAmple + sResource);
+					fWriteScript(sBaseUriLibrary + sResource);
 					break;
 
 				case "css":
-					fWriteStyleSheet(sBaseUriAmple + sResource);
+					fWriteStyleSheet(sBaseUriLibrary + sResource);
 					break;
 			}
 

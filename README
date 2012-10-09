@@ -6,6 +6,13 @@
  About:
    This is a repository with Ample SDK tests.
 
+ Dependency:
+ - Requires http://github.com/ilinsky/unit.js
+ - Deploy the unit.js library in the root directory of your web-server
+
+ Running:
+ - Access /unit.js/testRunner.html?testpage=../amplesdk-tests/unit/suite.html&autorun=true
+
  Useful references:
    Source code:  http://github.com/clientside/amplesdk
    Mailing List: http://groups.google.com/group/amplesdk
