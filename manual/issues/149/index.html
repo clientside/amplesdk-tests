@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Issue 149</title>
+		<script type="text/javascript">
+			var sAmple	= "../../../../amplesdk/";
+//			var sAmple	= "/amplesdk-releases/ample-0.9.3/";
+			document.write('<script type="text/javascript" src="' + sAmple + 'ample/runtime.js"></' + 'script>');
+			document.write('<script type="text/javascript" src="' + sAmple + 'ample/languages/xhtml/xhtml.js"></' + 'script>');
+			document.write('<link type="text/ample+css" href="' + sAmple + 'ample/languages/xhtml/themes/default/style.css" rel="stylesheet"/>');
+		</script>
+	</head>
+	<body>
+		<h3>Setting text node value before adding it to document</h3>
+		<div id="test-11"></div>
+		<div id="test-12"></div>
+		<h3>Changing text node value before adding it to document</h3>
+		<div id="test-21"></div>
+		<div id="test-22"></div>
+		<h3>Setting text node value after adding it to document</h3>
+		<div id="test-31"></div>
+		<div id="test-32"></div>
+		<h3>Changing text node value after adding it to document</h3>
+		<div id="test-41"></div>
+		<div id="test-42"></div>
+		<hr />
+
+		<script type="text/javascript">
+		ample.ready(function() {
+
+			//Passes
+			var el = ample.query("<div name=\"test-before-insert\"/>").text("test_text_before")[0];
+			ample.documentElement.appendChild(el);
+
+			var domEl = document.querySelector("div[name=test-before-insert]");
+
+			document.getElementById("test-11").innerHTML	= "Got: " + el.$getContainer().innerHTML + ", expected: test_text_before";
+			document.getElementById("test-12").innerHTML	= "Got: " + domEl.innerHTML + ", expected: test_text_before";
+
+			//Passes
+			var el = ample.query("<div name=\"test-alter-before-insert\">test_initial_text_before</div>").text("test_text_before")[0];
+			ample.documentElement.appendChild(el);
+
+			var domEl = document.querySelector("div[name=test-alter-before-insert]");
+
+			document.getElementById("test-21").innerHTML	= "Got: " + el.$getContainer().innerHTML + ", expected: test_text_before";
+			document.getElementById("test-22").innerHTML	= "Got: " + domEl.innerHTML + ", expected: test_text_before";
+
+			//Fails
+			var el = ample.query("<div name=\"test-after-insert\"/>").appendTo(ample.documentElement);
+
+			el.text("test_text_after");
+			el = el[0];
+
+			var domEl = document.querySelector("div[name=test-after-insert]");
+
+			document.getElementById("test-31").innerHTML	= "Got: " + el.$getContainer().innerHTML + ", expected: test_text_after";
+			document.getElementById("test-32").innerHTML	= "Got: " + domEl.innerHTML + ", expected: test_text_after";
+
+			//Fails
+			var el = ample.query("<div name=\"test-alter-after-insert\">test_initial_text_before</div>").appendTo(ample.documentElement);
+
+			el.text("test_text_after");
+			el = el[0];
+
+			var domEl = document.querySelector("div[name=test-alter-after-insert]");
+
+			document.getElementById("test-41").innerHTML	= "Got: " + el.$getContainer().innerHTML + ", expected: test_text_after";
+			document.getElementById("test-42").innerHTML	= "Got: " + domEl.innerHTML + ", expected: test_text_after";
+		});
+		</script>
+	</body>
+</html>
