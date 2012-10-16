@@ -19,8 +19,8 @@
 				var oObserver	= ample.getElementById("observer");
 				var sStyle = oObserver.getAttribute("style");
 				var sLabel = oObserver.getAttribute("label");
-				assertEquals(sStyle, "color: black");
-				assertEquals(sLabel, "Color changed");
+				assertEquals("color: black", sStyle);
+				assertEquals("Color changed", sLabel);
 			}
 		</script>
 	</head>
@@ -29,7 +29,7 @@
 		<script>
 		       ample.ready(function() {
 			   //Push the button.
-		           ample.query("#initiator").doCommand(); 
+		           ample.getElementById("initiator").doCommand(); 
 		       });
 		</script>
 
@@ -39,12 +39,12 @@
 			  <xul:broadcaster id="colorChanger" style="color: black"/>
 			</xul:broadcasterset>
 
-			<xul:button id="observer" label="Test">
-			  <xul:observes element="colorChanger" attribute="style" onbroadcast="this.parent.label='Color changed';"/>
+			<xul:button id="observer" label="Test" oncommand="ample.getElementById('colorChanger').setAttribute('style','color: green');">
+			  <xul:observes element="colorChanger" attribute="style" onbroadcast="button.parent.setAttribute('label','Color changed');"/>
 			</xul:button>
 
 			<xul:button id="initiator" label="Observer"
-			  oncommand="document.getElementById('colorChanger').setAttribute('style','color: red');"
+			  oncommand="ample.getElementById('colorChanger').setAttribute('style','color: red');"
 			/>
 		</xul:page>
 		</script>
