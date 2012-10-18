@@ -34,19 +34,21 @@
 		</script>
 
 		<script type="application/ample+xml">
-		<xul:page xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-			<xul:broadcasterset>
-			  <xul:broadcaster id="colorChanger" style="color: black"/>
-			</xul:broadcasterset>
+		<page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		    <vbox>
+			<broadcasterset>
+			  <broadcaster id="colorChanger" style="color: black"/>
+			</broadcasterset>
 
-			<xul:button id="observer" label="Test" oncommand="ample.getElementById('colorChanger').setAttribute('style','color: green');">
-			  <xul:observes element="colorChanger" attribute="style" onbroadcast="button.parent.setAttribute('label','Color changed');"/>
-			</xul:button>
+			<button id="observer" label="Test" oncommand="ample.getElementById('colorChanger').setAttribute('style','color: green');">
+			  <observes element="colorChanger" attribute="style" onbroadcast="this.parentNode.setAttribute('label','Color changed');"/>
+			</button>
 
-			<xul:button id="initiator" label="Observer"
+			<button id="initiator" label="Observer"
 			  oncommand="ample.getElementById('colorChanger').setAttribute('style','color: red');"
 			/>
-		</xul:page>
+		    </vbox>
+		</page>
 		</script>
 	</body>
 </html>
