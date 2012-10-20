@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JsUnit testing page</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../../jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+			JsUnitClient.include("languages/xul/xul.js");
+			JsUnitClient.include("languages/xul/themes/default/style.css");
+		</script>
+
+		<!-- Tests -->
+		<script type="text/javascript">
+			// 
+			function testObserver() {
+				var oObserver	= ample.getElementById("observer");
+				var sStyle = oObserver.getAttribute("style");
+				var sLabel = oObserver.getAttribute("label");
+				assertEquals("color: red", sStyle);
+				assertEquals("Color changed", sLabel);
+			}
+		</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page - XUL Broadcast Observes</p>
+		<script>
+		       ample.ready(function() {
+			   //Push the button.
+		           ample.getElementById("initiator").doCommand(); 
+		       });
+		</script>
+
+		<script type="application/ample+xml">
+		<page xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		    <vbox>
+			<broadcasterset>
+			  <broadcaster id="colorChanger" style="color: black"/>
+			</broadcasterset>
+
+			<button id="observer" label="Test" oncommand="ample.getElementById('colorChanger').setAttribute('style','color: green');">
+			  <observes element="colorChanger" attribute="style" onbroadcast="this.parentNode.setAttribute('label','Color changed');"/>
+			</button>
+
+			<button id="initiator" label="Observer"
+			  oncommand="ample.getElementById('colorChanger').setAttribute('style','color: red');"
+			/>
+		    </vbox>
+		</page>
+		</script>
+	</body>
+</html>
