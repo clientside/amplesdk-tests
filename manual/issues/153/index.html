@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:aml="http://www.amplesdk.com/ns/aml"
+	xmlns:data="mydata">
+	<head>
+		<title>Issue 153</title>
+		<script type="text/javascript" src="../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xul/xul.js"></script>
+		<script type="text/javascript" src="../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<link type="text/ample+css" href="../../../../amplesdk/ample/languages/xul/themes/default/style.css" rel="stylesheet" />
+	</head>
+
+	<body>
+
+	<script type="application/ample+xml">
+	<aml:data id="xml_inline">
+		<data:book>
+			<data:author>Author 1</data:author>
+			<data:title>Title 1</data:title>
+		</data:book>
+		<data:book>
+			<data:author>Author 2</data:author>
+			<data:title>Title 2</data:title>
+		</data:book>
+		<data:book>
+			<data:author>Author 3</data:author>
+			<data:title>Title 3</data:title>
+		</data:book>
+	</aml:data>
+	</script>
+	<!--
+	<script type="application/ample+xml">
+		<div>
+			<aml:repeater data="xml_inline" select="data|book">
+				<div>
+					<div title="{data|author}">{data|author}</div>
+					<div title="{data|title}">{data|title}</div>
+				</div>
+			</aml:repeater>
+		</div>
+	</script>
+	-->
+	<script type="application/ample+xml">
+		<xul:page>
+			<xul:listbox>
+				<xul:listhead>
+					<xul:listheader width="100" aml:values="label:column.author" />
+					<xul:listheader width="800" aml:values="label:column.title" />
+				</xul:listhead>
+				<xul:listbody>
+					<xul:listitem>
+						<xul:listcell label="{data|author}">was before</xul:listcell>
+						<xul:listcell label="{data|title}">was before</xul:listcell>
+					</xul:listitem>
+					<aml:repeater data="xml_inline" select="data|book">
+						<xul:listitem>
+							<xul:listcell label="{data|author}">{data|author}</xul:listcell>
+							<xul:listcell label="{data|title}">{data|title}</xul:listcell>
+						</xul:listitem>
+					</aml:repeater>
+					<xul:listitem>
+						<xul:listcell label="{data|author}">was after</xul:listcell>
+						<xul:listcell label="{data|title}">was after</xul:listcell>
+					</xul:listitem>
+				</xul:listbody>
+			</xul:listbox>
+		</xul:page>
+	</script>
+
+	</body>
+</html>
