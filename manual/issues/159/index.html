@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:aml="http://www.amplesdk.com/ns/aml">
+	<head>
+		<title>Issue 159</title>
+		<script type="text/javascript" src="../../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../../amplesdk/ample/languages/xul/xul.js"></script>
+		<script type="text/javascript" src="../../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<link type="text/ample+css" href="../../../../../amplesdk/ample/languages/xul/themes/default/style.css" rel="stylesheet" />
+
+		<script>
+			function fLog(sMessage) {
+				document.body.appendChild(document.createElement("div")).innerHTML	= sMessage;
+			}
+
+			ample.ready(function() {
+				fLog("<h4>show() on XHTML elements</h4>");
+				//
+				try {
+					fLog("0. Trying hiding rendered XHTML element");
+					ample.query('#xhtml_div').hide();
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+				//
+				try {
+					fLog("1. Trying hiding offline XHTML element");
+					var div = ample.query('<div>div</div>');
+					ample.query(div).hide();
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+				//
+				try {
+					fLog("2. Trying adding hidden offline XHTML element");
+					var div = ample.query('<div>div</div>');
+					ample.query(div).hide();
+					ample.query("body").append(div);
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+
+				fLog("<h4>hide() on XUL elements</h4>");
+
+				try {
+					fLog("0. Trying hiding rendered XUL element");
+					ample.query('#xul_button').hide();
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+				//
+				try {
+					fLog("1. Trying hiding offline XUL element");
+					var but = ample.query('<xul:button>button</xul:button>');
+					ample.query(but).hide();
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+				//
+				try {
+					fLog("2. Trying adding hidden offline XUL element");
+					var but = ample.query('<xul:button>button</xul:button>');
+					ample.query(but).hide();
+					ample.query("body").append(but);
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+			});
+
+			ample.ready(function() {
+				fLog("<h4>show() on XHTML elements</h4>");
+				//
+				try {
+					fLog("0. Trying showing rendered XHTML element");
+					ample.query('#xhtml_div2').show();
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+				//
+				try {
+					fLog("1. Trying showing offline XHTML element");
+					var div = ample.query('<div style="display:none">div</div>');
+					ample.query(div).show();
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+				//
+				try {
+					fLog("2. Trying adding shown offline XHTML element");
+					var div = ample.query('<div style="display:none;color:blue">div</div>');
+					ample.query(div).show();
+					ample.query("body").append(div);
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+
+				fLog("<h4>show() on XUL elements</h4>");
+
+				try {
+					fLog("0. Trying showing rendered XUL element");
+					ample.query('#xul_button2').show();
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+				//
+				try {
+					fLog("1. Trying showing offline XUL element");
+					var but = ample.query('<xul:button style="display:none">button</xul:button>');
+					ample.query(but).show();
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+				//
+				try {
+					fLog("2. Trying adding shown offline XUL element");
+					var but = ample.query('<xul:button style="display:none">button</xul:button>');
+					ample.query(but).show();
+					ample.query("body").append(but);
+					fLog("<div style='color:green'>OK :)</div>");
+				}
+				catch (e) {
+					fLog("<div style='color:red'>Fail :(</div>");
+				}
+			});
+		</script>
+	</head>
+
+	<body>
+		<h4>Static</h4>
+		<h5>To hide</h5>
+		<script type="application/ample+xml">
+			<div id="xhtml_div">div</div>
+			<xul:button id="xul_button">button</xul:button>
+		</script>
+
+		<h5>To reveal</h5>
+		<script type="application/ample+xml">
+			<div id="xhtml_div2" style="display:none">div</div>
+			<xul:button id="xul_button2" style="display:none">button</xul:button>
+		</script>
+
+		<h4>Dynamic</h4>
+	</body>
+</html>
