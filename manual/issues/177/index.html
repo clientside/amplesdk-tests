@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:aml="http://www.amplesdk.com/ns/aml">
+	<head>
+		<title>Issue 177</title>
+		<script type="text/javascript" src="../../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+		<script type="text/javascript">/*<![CDATA[*/
+			ample.ready(function () {
+				var sNsXhtml = "http://www.w3.org/1999/xhtml",
+					oLogContainer = document.getElementById("log"),
+					oNewElement;
+				function fLog (sMessage) {
+					oLogContainer
+						.appendChild(document.createElement("li"))
+						.appendChild(document.createTextNode(sMessage));
+				}
+
+				oNewElement = ample.documentElement.appendChild(ample.createElementNS(sNsXhtml, "p"));
+				fLog("New p element should have generated id: " + document.getElementsByTagName("p")[0].id);
+
+				oNewElement = ample.documentElement.appendChild(ample.createElementNS(sNsXhtml, "p"));
+				oNewElement.setAttribute("id", "p-no2");
+				oNewElement.appendChild(ample.createTextNode("OKAY"));
+				fLog("New p element should have id “p-no2”: " + document.getElementsByTagName("p")[1].id);
+				fLog("Below this list the string OKAY should appear.");
+			});
+		/*]]>*/</script>
+	</head>
+	<body>
+		<h1>Issue 177</h1>
+		<ol id="log"></ol>
+	</body>
+</html>
