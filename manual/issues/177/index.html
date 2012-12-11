@@ -15,16 +15,39 @@
 						.appendChild(document.createTextNode(sMessage));
 				}
 
+				// 1: Add child to element without id
 				oNewElement = ample.documentElement.appendChild(ample.createElementNS(sNsXhtml, "p"));
-				fLog("New p element should have generated id: " + document.getElementsByTagName("p")[0].id);
+				oNewElement.appendChild(ample.createTextNode("OKAY 1"));
+				fLog("New p element should have generated view id (ele_1): " + document.getElementsByTagName("p")[0].id + ", model id (null): " + ample.getElementsByTagName("p")[0].getAttribute("id"));
 
+				// 2: Add child to element with id
 				oNewElement = ample.documentElement.appendChild(ample.createElementNS(sNsXhtml, "p"));
 				oNewElement.setAttribute("id", "p-no2");
-				oNewElement.appendChild(ample.createTextNode("OKAY"));
-				fLog("New p element should have id “p-no2”: " + document.getElementsByTagName("p")[1].id);
-				fLog("Below this list the string OKAY should appear.");
+				oNewElement.appendChild(ample.createTextNode("OKAY 2"));
+				fLog("New p element should have view id (p-no2): " + document.getElementsByTagName("p")[1].id + ", model id (p-no2): " + ample.getElementsByTagName("p")[1].getAttribute("id"));
+
+				// 3: Add child to element with removed it
+				oNewElement = ample.documentElement.appendChild(ample.createElementNS(sNsXhtml, "p"));
+				oNewElement.setAttribute("id", "p-no3");
+				oNewElement.removeAttribute("id");
+				oNewElement.appendChild(ample.createTextNode("OKAY 3"));
+				fLog("New p element should have generated view id (ele_3): " + document.getElementsByTagName("p")[2].id + ", model id (null): " + ample.getElementsByTagName("p")[2].getAttribute("id"));
+
+				// 4: Add child to element with modified id
+				oNewElement = ample.documentElement.appendChild(ample.createElementNS(sNsXhtml, "p"));
+				oNewElement.setAttribute("id", "p-no4-pre");
+				oNewElement.setAttribute("id", "p-no4");
+				oNewElement.appendChild(ample.createTextNode("OKAY 4"));
+				fLog("New p element should have generated view id (p-no4): " + document.getElementsByTagName("p")[3].id + ", model id (p-no4): " + ample.getElementsByTagName("p")[3].getAttribute("id"));
+
 			});
 		/*]]>*/</script>
+		<style>
+		p {
+			border: solid 1px red;
+			padding:1px;
+		}
+		</style>
 	</head>
 	<body>
 		<h1>Issue 177</h1>
