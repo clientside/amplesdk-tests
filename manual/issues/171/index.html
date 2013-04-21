@@ -16,7 +16,7 @@
 		 </style>
 		 <script type="text/javascript">
 			ample.ready( function() {
-				ample.post( "testreplacenode.xml", null,
+				ample.get( "testreplacenode.xml", null,
 					function( o ) {
 									  var node = ample.importNode( o.documentElement, true );
 									  ample.query( "#list" ).replaceWith( node );
