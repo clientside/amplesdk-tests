@@ -1,0 +1,7 @@
+<?xml version='1.0' ?>
+<xul:listbody id="list" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<xul:listitem>
+		<xul:listcell label="1"/>
+		<xul:listcell label="2"/>
+	</xul:listitem>
+</xul:listbody>
