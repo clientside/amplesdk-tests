@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:aml="http://www.amplesdk.com/ns/aml">
+	<head>
+		<title>Issue 187</title>
+		<script type="text/javascript" src="../../../../../amplesdk/ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../../amplesdk/ample/languages/xhtml/xhtml.js"></script>
+	</head>
+	<body>
+		<h4>Ample</h4>
+		<script>ample.open()</script>
+		<div onmousedown="document.getElementById('report').innerHTML = event.detail">click here</div>
+		<script>ample.close()</script>
+		event.detail: <span id="report"></span>
+
+		<h4>Native</h4>
+		<div onmousedown="document.getElementById('report_2').innerHTML = event.detail">click here</div>
+		event.detail: <span id="report_2"></span>
+	</body>
+</html>
